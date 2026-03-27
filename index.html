@@ -15,26 +15,35 @@
       overflow: hidden;
     }
 
-    /* SCROLL CONTAINER */
     .container {
       height: 100vh;
       overflow-y: scroll;
       scroll-snap-type: y mandatory;
     }
 
-    /* EACH FRAME */
     .section {
       height: 100vh;
       scroll-snap-align: start;
       display: flex;
       align-items: center;
       justify-content: center;
-      position: relative;
-      padding: 40px;
     }
 
+    /* FRAME */
+    .frame {
+      width: 90%;
+      height: 85%;
+      margin: auto;
+      border: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    /* TEXT */
     h1 {
-      font-size: 70px;
+      font-size: 64px;
       margin: 0;
       line-height: 1.1;
     }
@@ -46,43 +55,53 @@
 
     .btn {
       margin-top: 20px;
-      padding: 10px 25px;
+      padding: 10px 24px;
       border: 1px solid white;
       color: white;
       text-decoration: none;
     }
 
-    /* HERO */
-    .hero {
-      flex-direction: column;
-      text-align: center;
-    }
-
-    /* IMAGE FRAME */
-    .image-frame {
-      background-size: cover;
-      background-position: center;
-    }
-
-    /* LEFT TEXT */
-    .left {
+    /* IMAGE OVERLAY */
+    .overlay {
       position: absolute;
-      left: 40px;
-      top: 50%;
-      transform: translateY(-50%);
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.8));
     }
 
-    /* PRODUCT SPLIT */
+    /* PRODUCT LAYOUT */
     .product {
+      display: flex;
       justify-content: space-between;
-    }
-
-    .product .text {
-      width: 40%;
+      padding: 40px;
     }
 
     .product img {
-      width: 300px;
+      width: 280px;
+    }
+
+    /* ANIMATION */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+
+    .show .fade-up:nth-child(1) {
+      transition: 1s;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .show .fade-up:nth-child(2) {
+      transition: 1s 0.3s;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .show .fade-up:nth-child(3) {
+      transition: 1s 0.6s;
+      opacity: 1;
+      transform: translateY(0);
     }
 
   </style>
@@ -92,40 +111,57 @@
 
 <div class="container">
 
-  <!-- HERO FRAME -->
-  <div class="section hero">
-    <h1>VELÔRTE</h1>
-    <p>A STUDY IN QUIET LUXURY</p>
-  </div>
-
-  <!-- IMAGE FRAME -->
-  <div class="section image-frame" style="background-image:url('https://images.unsplash.com/photo-1512436991641-6745cdb1723f');">
-  </div>
-
-  <!-- TEXT FRAME -->
+  <!-- HERO -->
   <div class="section">
-    <div class="left">
-      <h1>Not made<br>for everyone</h1>
-      <p style="margin-top:40px;">VELÔRTE — 2026</p>
+    <div class="frame show">
+      <div style="text-align:center;">
+        <h1 class="fade-up">VELÔRTE</h1>
+        <p class="fade-up">A STUDY IN QUIET LUXURY</p>
+      </div>
     </div>
   </div>
 
-  <!-- PRODUCT FRAME -->
-  <div class="section product">
-    <div class="text">
-      <p>Signature Hoodie</p>
-      <h1>₹4,999</h1>
-      <a class="btn" href="https://wa.me/919XXXXXXXXX">ORDER</a>
+  <!-- IMAGE -->
+  <div class="section">
+    <div class="frame" style="background:url('https://images.unsplash.com/photo-1512436991641-6745cdb1723f') center/cover;">
+      <div class="overlay"></div>
     </div>
-
-    <img src="https://via.placeholder.com/350x450">
   </div>
 
-  <!-- DROP FRAME -->
-  <div class="section hero">
-    <p>DROP 01</p>
-    <h1>Limited</h1>
-    <p>No restocks</p>
+  <!-- STATEMENT -->
+  <div class="section">
+    <div class="frame show" style="align-items:flex-start; padding-left:40px;">
+      <div>
+        <h1 class="fade-up">Not made<br>for everyone</h1>
+        <p class="fade-up" style="margin-top:40px;">VELÔRTE — 2026</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRODUCT -->
+  <div class="section">
+    <div class="frame product show">
+
+      <div>
+        <p class="fade-up">Signature Hoodie</p>
+        <h1 class="fade-up">₹4,999</h1>
+        <a class="btn fade-up" href="https://wa.me/919XXXXXXXXX">ORDER</a>
+      </div>
+
+      <img src="https://via.placeholder.com/350x450">
+
+    </div>
+  </div>
+
+  <!-- DROP -->
+  <div class="section">
+    <div class="frame show" style="text-align:center;">
+      <div>
+        <p class="fade-up">DROP 01</p>
+        <h1 class="fade-up">Limited</h1>
+        <p class="fade-up">No restocks</p>
+      </div>
+    </div>
   </div>
 
 </div>
