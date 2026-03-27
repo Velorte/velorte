@@ -1,170 +1,796 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>VELÔRTE</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velôrte | Wanna be different, wear Velôrte</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+        :root {
+            --charcoal: #1a1a1a;
+            --off-white: #f5f3f0;
+            --cream: #e8e4df;
+            --camel: #c4a77d;
+            --burnt-orange: #b87333;
+            --forest: #2d3b2d;
+        }
 
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Playfair Display', serif;
-      background: #0a0a0a;
-      color: white;
-      overflow: hidden;
-    }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--off-white);
+            color: var(--charcoal);
+            overflow-x: hidden;
+        }
 
-    .container {
-      height: 100vh;
-      overflow-y: scroll;
-      scroll-snap-type: y mandatory;
-    }
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            mix-blend-mode: difference;
+        }
 
-    .section {
-      height: 100vh;
-      scroll-snap-align: start;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            color: white;
+            text-transform: uppercase;
+        }
 
-    /* FRAME */
-    .frame {
-      width: 90%;
-      height: 85%;
-      margin: auto;
-      border: 1px solid rgba(255,255,255,0.08);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
 
-    /* TEXT */
-    h1 {
-      font-size: 64px;
-      margin: 0;
-      line-height: 1.1;
-    }
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            transition: opacity 0.3s;
+        }
 
-    p {
-      color: #aaa;
-      letter-spacing: 1px;
-    }
+        .nav-links a:hover {
+            opacity: 0.6;
+        }
 
-    .btn {
-      margin-top: 20px;
-      padding: 10px 24px;
-      border: 1px solid white;
-      color: white;
-      text-decoration: none;
-    }
+        .nav-right {
+            display: flex;
+            gap: 1.5rem;
+            color: white;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+        }
 
-    /* IMAGE OVERLAY */
-    .overlay {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.8));
-    }
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: var(--charcoal);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            position: relative;
+            overflow: hidden;
+        }
 
-    /* PRODUCT LAYOUT */
-    .product {
-      display: flex;
-      justify-content: space-between;
-      padding: 40px;
-    }
+        .hero-left {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 0 5rem;
+            position: relative;
+            z-index: 2;
+        }
 
-    .product img {
-      width: 280px;
-    }
+        .hero-tagline {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 300;
+            line-height: 1.1;
+            color: white;
+            margin-bottom: 2rem;
+        }
 
-    /* ANIMATION */
-    .fade-up {
-      opacity: 0;
-      transform: translateY(40px);
-    }
+        .hero-tagline span {
+            font-style: italic;
+            color: var(--camel);
+        }
 
-    .show .fade-up:nth-child(1) {
-      transition: 1s;
-      opacity: 1;
-      transform: translateY(0);
-    }
+        .hero-sub {
+            font-size: 0.9rem;
+            color: rgba(255,255,255,0.6);
+            letter-spacing: 0.1em;
+            max-width: 400px;
+            line-height: 1.8;
+            margin-bottom: 3rem;
+        }
 
-    .show .fade-up:nth-child(2) {
-      transition: 1s 0.3s;
-      opacity: 1;
-      transform: translateY(0);
-    }
+        .cta-btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            border: 1px solid white;
+            color: white;
+            text-decoration: none;
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            transition: all 0.4s ease;
+            width: fit-content;
+        }
 
-    .show .fade-up:nth-child(3) {
-      transition: 1s 0.6s;
-      opacity: 1;
-      transform: translateY(0);
-    }
+        .cta-btn:hover {
+            background: white;
+            color: var(--charcoal);
+        }
 
-  </style>
+        .hero-right {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-image::before {
+            content: '';
+            position: absolute;
+            width: 80%;
+            height: 80%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 600"><rect fill="%23333" width="400" height="600"/><text x="50%" y="50%" font-family="serif" font-size="20" fill="%23666" text-anchor="middle">Editorial Fashion</text></svg>') center/cover;
+            opacity: 0.5;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            bottom: 3rem;
+            right: 3rem;
+            text-align: right;
+            color: white;
+        }
+
+        .hero-overlay h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-overlay p {
+            font-size: 0.7rem;
+            letter-spacing: 0.2em;
+            opacity: 0.7;
+        }
+
+        /* Marquee */
+        .marquee {
+            background: var(--camel);
+            padding: 1rem 0;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: scroll 20s linear infinite;
+        }
+
+        .marquee span {
+            font-size: 0.75rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--charcoal);
+            margin: 0 3rem;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Collection Section */
+        .collection {
+            padding: 8rem 3rem;
+            background: var(--off-white);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 300;
+        }
+
+        .section-title span {
+            font-style: italic;
+            color: var(--burnt-orange);
+        }
+
+        .view-all {
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--charcoal);
+            text-decoration: none;
+            border-bottom: 1px solid var(--charcoal);
+            padding-bottom: 0.3rem;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+        }
+
+        .product-card {
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            group: product;
+        }
+
+        .product-card:nth-child(2) {
+            margin-top: 3rem;
+        }
+
+        .product-card:nth-child(3) {
+            margin-top: 1.5rem;
+        }
+
+        .product-image {
+            aspect-ratio: 3/4;
+            background: var(--cream);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.6s ease;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.02);
+        }
+
+        .product-image::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.4));
+        }
+
+        .product-tag {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            padding: 0.4rem 0.8rem;
+            background: white;
+            color: var(--charcoal);
+        }
+
+        .product-info {
+            padding: 1.5rem 0;
+        }
+
+        .product-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-price {
+            font-size: 0.85rem;
+            color: var(--burnt-orange);
+            letter-spacing: 0.05em;
+        }
+
+        /* Editorial Section */
+        .editorial {
+            background: var(--charcoal);
+            color: white;
+            padding: 8rem 3rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .editorial-left {
+            position: relative;
+        }
+
+        .editorial-image {
+            width: 100%;
+            aspect-ratio: 4/5;
+            background: linear-gradient(135deg, #333 0%, #1a1a1a 100%);
+            position: relative;
+        }
+
+        .editorial-quote {
+            position: absolute;
+            bottom: -2rem;
+            right: -2rem;
+            background: var(--burnt-orange);
+            padding: 2rem;
+            max-width: 300px;
+        }
+
+        .editorial-quote p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-style: italic;
+            line-height: 1.4;
+        }
+
+        .editorial-right h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            font-weight: 300;
+            margin-bottom: 2rem;
+            line-height: 1.2;
+        }
+
+        .editorial-right p {
+            font-size: 0.95rem;
+            line-height: 2;
+            opacity: 0.7;
+            margin-bottom: 2rem;
+            max-width: 500px;
+        }
+
+        .heritage-list {
+            list-style: none;
+            margin-top: 3rem;
+        }
+
+        .heritage-list li {
+            padding: 1.5rem 0;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .heritage-list li span {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.2rem;
+            font-style: italic;
+            text-transform: none;
+            letter-spacing: 0;
+        }
+
+        /* Categories */
+        .categories {
+            padding: 8rem 3rem;
+            background: var(--off-white);
+        }
+
+        .cat-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .cat-card {
+            position: relative;
+            aspect-ratio: 1;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .cat-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: var(--cream);
+            transition: transform 0.6s ease;
+        }
+
+        .cat-card:hover::before {
+            transform: scale(1.05);
+        }
+
+        .cat-content {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .cat-number {
+            font-size: 0.7rem;
+            letter-spacing: 0.3em;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .cat-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cat-link {
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            border-bottom: 1px solid var(--charcoal);
+            padding-bottom: 0.3rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--charcoal);
+            color: white;
+            padding: 5rem 3rem 2rem;
+        }
+
+        .footer-top {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 5rem;
+        }
+
+        .footer-brand h3 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-brand p {
+            font-size: 0.9rem;
+            opacity: 0.6;
+            line-height: 1.8;
+            max-width: 300px;
+        }
+
+        .footer-col h4 {
+            font-size: 0.75rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            opacity: 0.8;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li {
+            margin-bottom: 1rem;
+        }
+
+        .footer-col a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.85rem;
+            opacity: 0.6;
+            transition: opacity 0.3s;
+        }
+
+        .footer-col a:hover {
+            opacity: 1;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 2rem;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.75rem;
+            opacity: 0.5;
+            letter-spacing: 0.05em;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 1024px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-left {
+                padding: 8rem 2rem 4rem;
+            }
+
+            .hero-right {
+                display: none;
+            }
+
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .editorial {
+                grid-template-columns: 1fr;
+            }
+
+            .cat-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .product-card:nth-child(2),
+            .product-card:nth-child(3) {
+                margin-top: 0;
+            }
+
+            .footer-top {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+    </style>
 </head>
-
 <body>
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">Velôrte</div>
+        <ul class="nav-links">
+            <li><a href="#collection">Collection</a></li>
+            <li><a href="#heritage">Heritage</a></li>
+            <li><a href="#categories">Categories</a></li>
+            <li><a href="#journal">Journal</a></li>
+        </ul>
+        <div class="nav-right">
+            <span>Search</span>
+            <span>Account</span>
+            <span>Bag (0)</span>
+        </div>
+    </nav>
 
-<div class="container">
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-left">
+            <h1 class="hero-tagline">Wanna be <span>different</span>,<br>wear Velôrte</h1>
+            <p class="hero-sub">Where old money heritage meets street culture. Crafted for those who don't follow—they lead.</p>
+            <a href="#collection" class="cta-btn">Explore Drop 01</a>
+        </div>
+        <div class="hero-right">
+            <div class="hero-image"></div>
+            <div class="hero-overlay">
+                <h3>The Signature Hoodie</h3>
+                <p>LIMITED EDITION — ₹4,999</p>
+            </div>
+        </div>
+    </section>
 
-  <!-- HERO -->
-  <div class="section">
-    <div class="frame show">
-      <div style="text-align:center;">
-        <h1 class="fade-up">VELÔRTE</h1>
-        <p class="fade-up">A STUDY IN QUIET LUXURY</p>
-      </div>
+    <!-- Marquee -->
+    <div class="marquee">
+        <div class="marquee-content">
+            <span>Old Money Aesthetic</span>
+            <span>Streetwear Edge</span>
+            <span>Quiet Luxury</span>
+            <span>Limited Drops</span>
+            <span>No Restocks</span>
+            <span>Old Money Aesthetic</span>
+            <span>Streetwear Edge</span>
+            <span>Quiet Luxury</span>
+            <span>Limited Drops</span>
+            <span>No Restocks</span>
+        </div>
     </div>
-  </div>
 
-  <!-- IMAGE -->
-  <div class="section">
-    <div class="frame" style="background:url('https://images.unsplash.com/photo-1512436991641-6745cdb1723f') center/cover;">
-      <div class="overlay"></div>
-    </div>
-  </div>
+    <!-- Collection Section -->
+    <section class="collection" id="collection">
+        <div class="section-header">
+            <h2 class="section-title">The <span>Collection</span></h2>
+            <a href="#" class="view-all">View All →</a>
+        </div>
 
-  <!-- STATEMENT -->
-  <div class="section">
-    <div class="frame show" style="align-items:flex-start; padding-left:40px;">
-      <div>
-        <h1 class="fade-up">Not made<br>for everyone</h1>
-        <p class="fade-up" style="margin-top:40px;">VELÔRTE — 2026</p>
-      </div>
-    </div>
-  </div>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="product-tag">New</span>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">The Signature Hoodie</h3>
+                    <p class="product-price">₹4,999</p>
+                </div>
+            </div>
 
-  <!-- PRODUCT -->
-  <div class="section">
-    <div class="frame product show">
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="product-tag">Heritage</span>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Camel Overcoat</h3>
+                    <p class="product-price">₹12,999</p>
+                </div>
+            </div>
 
-      <div>
-        <p class="fade-up">Signature Hoodie</p>
-        <h1 class="fade-up">₹4,999</h1>
-        <a class="btn fade-up" href="https://wa.me/919XXXXXXXXX">ORDER</a>
-      </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="product-tag">Street</span>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Structured Cap</h3>
+                    <p class="product-price">₹2,499</p>
+                </div>
+            </div>
 
-      <img src="https://via.placeholder.com/350x450">
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="product-tag">Limited</span>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Heritage Tote</h3>
+                    <p class="product-price">₹8,999</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    </div>
-  </div>
+    <!-- Editorial Section -->
+    <section class="editorial" id="heritage">
+        <div class="editorial-left">
+            <div class="editorial-image"></div>
+            <div class="editorial-quote">
+                <p>"Not made for everyone. Made for those who understand."</p>
+            </div>
+        </div>
+        <div class="editorial-right">
+            <h2>A Study in <em>Quiet Luxury</em></h2>
+            <p>Velôrte exists at the intersection of heritage and rebellion. We craft pieces that speak softly but carry undeniable weight—garments that feel like they've been inherited, yet worn with street-level confidence.</p>
+            <p>Every stitch is intentional. Every drop is limited. We don't do restocks because true luxury isn't about availability—it's about discernment.</p>
 
-  <!-- DROP -->
-  <div class="section">
-    <div class="frame show" style="text-align:center;">
-      <div>
-        <p class="fade-up">DROP 01</p>
-        <h1 class="fade-up">Limited</h1>
-        <p class="fade-up">No restocks</p>
-      </div>
-    </div>
-  </div>
+            <ul class="heritage-list">
+                <li>Heritage Craftsmanship <span>Italian Fabrics</span></li>
+                <li>Street Attitude <span>Urban Silhouettes</span></li>
+                <li>Limited Exclusivity <span>No Restocks Ever</span></li>
+            </ul>
+        </div>
+    </section>
 
-</div>
+    <!-- Categories -->
+    <section class="categories" id="categories">
+        <div class="section-header">
+            <h2 class="section-title">Shop by <span>Category</span></h2>
+        </div>
 
+        <div class="cat-grid">
+            <div class="cat-card">
+                <div class="cat-content">
+                    <span class="cat-number">01</span>
+                    <h3 class="cat-name">Old Money</h3>
+                    <span class="cat-link">Explore →</span>
+                </div>
+            </div>
+
+            <div class="cat-card">
+                <div class="cat-content">
+                    <span class="cat-number">02</span>
+                    <h3 class="cat-name">Streetwear</h3>
+                    <span class="cat-link">Explore →</span>
+                </div>
+            </div>
+
+            <div class="cat-card">
+                <div class="cat-content">
+                    <span class="cat-number">03</span>
+                    <h3 class="cat-name">Accessories</h3>
+                    <span class="cat-link">Explore →</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-top">
+            <div class="footer-brand">
+                <h3>Velôrte</h3>
+                <p>Wanna be different, wear Velôrte. Where heritage meets the streets. Crafted for those who lead, not follow.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Shop</h4>
+                <ul>
+                    <li><a href="#">New Arrivals</a></li>
+                    <li><a href="#">Old Money</a></li>
+                    <li><a href="#">Streetwear</a></li>
+                    <li><a href="#">Accessories</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Brand</h4>
+                <ul>
+                    <li><a href="#">Heritage</a></li>
+                    <li><a href="#">Journal</a></li>
+                    <li><a href="#">Stockists</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Newsletter</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <span>© 2026 Velôrte. All rights reserved.</span>
+            <span>Made with intention. No restocks.</span>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Nav blend mode adjustment
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > window.innerHeight - 100) {
+                nav.style.mixBlendMode = 'normal';
+                nav.style.background = 'rgba(26,26,26,0.9)';
+            } else {
+                nav.style.mixBlendMode = 'difference';
+                nav.style.background = 'transparent';
+            }
+        });
+    </script>
 </body>
 </html>
