@@ -3,6 +3,7 @@
 <head>
   <title>VELÔRTE</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <style>
     body {
       margin: 0;
@@ -10,31 +11,36 @@
       color: white;
       font-family: serif;
       text-align: center;
+      scroll-behavior: smooth;
     }
 
-    .section {
-      padding: 90px 20px;
+    section {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
     }
 
     h1 {
-      font-size: 56px;
+      font-size: 60px;
       letter-spacing: 4px;
     }
 
     p {
       color: #aaa;
-      font-size: 15px;
+      max-width: 300px;
     }
 
     img {
       width: 100%;
-      max-width: 420px;
+      max-width: 400px;
     }
 
     .btn {
-      display: inline-block;
       margin-top: 20px;
-      padding: 10px 22px;
+      padding: 10px 20px;
       border: 1px solid white;
       color: white;
       text-decoration: none;
@@ -44,29 +50,37 @@
 
 <body>
 
-<div class="section">
+<!-- HERO -->
+<section>
   <h1>VELÔRTE</h1>
   <p>A study in quiet luxury</p>
-  <a class="btn" href="#shop">ENTER</a>
-</div>
+  <a href="#image" class="btn">ENTER</a>
+</section>
 
-<div class="section">
-  <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d">
-</div>
-
-<div class="section">
-  <p>Not made for everyone.<br>Only for those who understand presence.</p>
-</div>
-
-<div class="section" id="shop">
+<!-- IMAGE -->
+<section id="image">
   <img src="https://images.unsplash.com/photo-1503341504253-dff4815485f1">
+</section>
+
+<!-- TEXT -->
+<section>
+  <p>
+    Not made for everyone.<br><br>
+    Only for those who understand.
+  </p>
+</section>
+
+<!-- PRODUCT -->
+<section>
+  <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d">
   <p>Signature Hoodie<br>₹4,999</p>
   <a class="btn" href="https://wa.me/8917465586">ORDER</a>
-</div>
+</section>
 
-<div class="section">
-  <p>DROP 01<br>Limited. No restocks.</p>
-</div>
+<!-- DROP -->
+<section>
+  <p>DROP 01<br><br>Limited.<br>No restocks.</p>
+</section>
 
 </body>
 </html>
