@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Velôrte | Wanna be different, wear Velôrte</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400;1,600&family=Inter:wght@200;300;400;500&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,17 +13,15 @@
         }
 
         :root {
-            --void: #0a0a0a;
-            --charcoal: #111111;
-            --ink: #1a1a1a;
-            --smoke: #2a2a2a;
-            --ash: #666666;
-            --fog: #999999;
-            --bone: #c4c4c4;
-            --cream: #e0e0e0;
-            --camel: #8b7355;
-            --rust: #6b4423;
-            --blood: #3d1f1f;
+            --pure-white: #ffffff;
+            --off-white: #f5f5f5;
+            --light-gray: #e8e8e8;
+            --mid-gray: #d0d0d0;
+            --dark-gray: #1a1a1a;
+            --charcoal: #0f0f0f;
+            --black: #000000;
+            --camel: #c4a77d;
+            --accent: #ff3333;
         }
 
         html {
@@ -32,24 +30,9 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: var(--void);
-            color: var(--cream);
+            background: var(--pure-white);
+            color: var(--charcoal);
             overflow-x: hidden;
-            font-weight: 300;
-        }
-
-        /* Noise overlay */
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-            opacity: 0.03;
-            pointer-events: none;
-            z-index: 9999;
         }
 
         /* Navigation */
@@ -57,333 +40,191 @@
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 2rem 4rem;
+            padding: 1.5rem 4rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 1000;
-            transition: all 0.6s ease;
-        }
-
-        nav.scrolled {
-            background: rgba(10,10,10,0.85);
-            backdrop-filter: blur(20px);
-            padding: 1.2rem 4rem;
+            background: var(--pure-white);
+            border-bottom: 1px solid var(--light-gray);
         }
 
         .logo {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.6rem;
-            font-weight: 400;
-            letter-spacing: 0.35em;
-            color: var(--cream);
-            text-transform: uppercase;
-            transition: all 0.4s ease;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--black);
         }
 
-        .nav-links {
+        .nav-center {
             display: flex;
-            gap: 3rem;
+            gap: 2.5rem;
             list-style: none;
         }
 
-        .nav-links a {
-            color: var(--fog);
+        .nav-center a {
+            color: var(--dark-gray);
             text-decoration: none;
-            font-size: 0.7rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            transition: all 0.4s ease;
-            position: relative;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            text-transform: capitalize;
+            transition: color 0.3s;
         }
 
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: var(--camel);
-            transition: width 0.4s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--cream);
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
+        .nav-center a:hover {
+            color: var(--black);
         }
 
         .nav-right {
             display: flex;
-            gap: 2rem;
-            color: var(--fog);
-            font-size: 0.7rem;
-            letter-spacing: 0.15em;
-            cursor: pointer;
-            transition: color 0.3s;
+            gap: 1.5rem;
+            align-items: center;
         }
 
-        .nav-right span:hover {
-            color: var(--cream);
+        .nav-right svg {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+
+        .nav-right svg:hover {
+            opacity: 0.6;
         }
 
         /* Hero Section */
         .hero {
             min-height: 100vh;
-            background: var(--void);
+            background: var(--off-white);
+            padding-top: 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem 4rem;
             display: grid;
             grid-template-columns: 1fr 1.2fr;
-            position: relative;
-            overflow: hidden;
-            padding: 0 4rem;
+            gap: 4rem;
+            align-items: center;
+            min-height: calc(100vh - 80px);
         }
 
-        .hero-left {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+        .hero-content {
             position: relative;
             z-index: 2;
-            padding-top: 6rem;
         }
 
-        .hero-tagline {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(3.5rem, 10vw, 8rem);
-            font-weight: 300;
-            line-height: 0.95;
-            color: var(--cream);
-            margin-bottom: 3rem;
-            letter-spacing: -0.02em;
-        }
-
-        .hero-tagline .line-1 {
-            display: block;
-            transform: translateX(-5%);
-        }
-
-        .hero-tagline .line-2 {
-            display: block;
-            font-style: italic;
-            color: var(--camel);
-            transform: translateX(15%);
-            margin-top: 0.5rem;
-        }
-
-        .hero-tagline .line-3 {
-            display: block;
-            font-size: 0.6em;
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
-            font-family: 'Inter', sans-serif;
-            font-weight: 300;
-            color: var(--ash);
-            margin-top: 2rem;
-            transform: translateX(25%);
-        }
-
-        .hero-sub {
-            font-size: 0.85rem;
-            color: var(--fog);
-            letter-spacing: 0.05em;
-            max-width: 380px;
-            line-height: 2;
-            margin-bottom: 4rem;
-            transform: translateX(10%);
-        }
-
-        .cta-group {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-            transform: translateX(10%);
-        }
-
-        .cta-btn {
+        .hero-tag {
             display: inline-block;
-            padding: 1.2rem 3rem;
-            border: 1px solid var(--smoke);
-            color: var(--cream);
-            text-decoration: none;
-            font-size: 0.7rem;
-            letter-spacing: 0.25em;
-            text-transform: uppercase;
-            transition: all 0.5s ease;
-            background: transparent;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: var(--camel);
-            transition: left 0.5s ease;
-            z-index: -1;
-        }
-
-        .cta-btn:hover {
-            border-color: var(--camel);
-            color: var(--void);
-        }
-
-        .cta-btn:hover::before {
-            left: 0;
-        }
-
-        .cta-link {
-            color: var(--fog);
-            text-decoration: none;
-            font-size: 0.75rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--dark-gray);
+            border-radius: 20px;
+            font-size: 0.65rem;
             letter-spacing: 0.1em;
-            border-bottom: 1px solid var(--ash);
-            padding-bottom: 0.3rem;
-            transition: all 0.3s;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            background: var(--pure-white);
         }
 
-        .cta-link:hover {
-            color: var(--cream);
-            border-color: var(--camel);
+        .hero-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(4rem, 12vw, 10rem);
+            font-weight: 700;
+            line-height: 0.9;
+            letter-spacing: -0.04em;
+            color: var(--black);
+            margin-bottom: 2rem;
         }
 
-        .hero-right {
+        .hero-title span {
+            display: block;
+        }
+
+        .hero-title .line-2 {
+            color: var(--mid-gray);
+        }
+
+        .hero-image-area {
             position: relative;
+            height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
-        }
-
-        .hero-image-container {
-            position: relative;
-            width: 85%;
-            aspect-ratio: 3/4;
-            overflow: hidden;
         }
 
         .hero-image {
             width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--ink) 0%, var(--smoke) 50%, var(--ink) 100%);
+            aspect-ratio: 4/5;
+            background: linear-gradient(135deg, var(--light-gray) 0%, var(--mid-gray) 100%);
             position: relative;
-            transform: scale(1.1);
-            transition: transform 1.5s ease;
-        }
-
-        .hero-image.loaded {
-            transform: scale(1);
+            overflow: hidden;
         }
 
         .hero-image::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(to bottom, transparent 40%, var(--void) 100%);
-            z-index: 2;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500"><rect fill="%23ddd" width="400" height="500"/><text x="50%" y="50%" font-family="sans-serif" font-size="20" fill="%23999" text-anchor="middle">Hero Image</text></svg>') center/cover;
         }
 
-        .hero-image::after {
+        .hero-thumb {
+            position: absolute;
+            bottom: 10%;
+            right: -5%;
+            width: 120px;
+            height: 160px;
+            background: var(--pure-white);
+            border: 2px solid var(--black);
+            padding: 0.5rem;
+            transform: rotate(5deg);
+            box-shadow: 10px 10px 0 rgba(0,0,0,0.1);
+        }
+
+        .hero-thumb::before {
             content: '';
-            position: absolute;
-            inset: 0;
-            border: 1px solid var(--smoke);
-            margin: 1.5rem;
-            pointer-events: none;
-            z-index: 3;
+            display: block;
+            width: 100%;
+            height: 100%;
+            background: var(--light-gray);
         }
 
-        .floating-tag {
-            position: absolute;
-            bottom: 15%;
-            left: -10%;
-            background: var(--blood);
-            padding: 1.5rem 2rem;
-            z-index: 4;
-            transform: rotate(-3deg);
-        }
-
-        .floating-tag h3 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.65rem;
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
-            color: var(--cream);
-            margin-bottom: 0.5rem;
-        }
-
-        .floating-tag p {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.3rem;
-            font-style: italic;
-            color: var(--camel);
-        }
-
-        .scroll-indicator {
-            position: absolute;
-            bottom: 3rem;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1rem;
-            opacity: 0.4;
-        }
-
-        .scroll-indicator span {
-            font-size: 0.6rem;
-            letter-spacing: 0.3em;
-            text-transform: uppercase;
-        }
-
-        .scroll-line {
-            width: 1px;
-            height: 60px;
-            background: linear-gradient(to bottom, var(--cream), transparent);
-            animation: scrollPulse 2s ease-in-out infinite;
-        }
-
-        @keyframes scrollPulse {
-            0%, 100% { opacity: 0.3; transform: scaleY(0.8); }
-            50% { opacity: 1; transform: scaleY(1); }
-        }
-
-        /* Marquee */
+        /* Brand Marquee */
         .marquee-section {
-            background: var(--ink);
-            padding: 2rem 0;
-            border-top: 1px solid var(--smoke);
-            border-bottom: 1px solid var(--smoke);
+            background: var(--black);
+            padding: 1.2rem 0;
             overflow: hidden;
         }
 
         .marquee-track {
             display: flex;
-            animation: marquee 25s linear infinite;
+            animation: marquee 20s linear infinite;
             white-space: nowrap;
         }
 
         .marquee-item {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.75rem;
-            letter-spacing: 0.4em;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
             text-transform: uppercase;
-            color: var(--ash);
-            padding: 0 4rem;
-            position: relative;
+            color: var(--mid-gray);
+            padding: 0 3rem;
+            display: flex;
+            align-items: center;
+            gap: 3rem;
         }
 
         .marquee-item::after {
-            content: '•';
-            position: absolute;
-            right: 0;
-            color: var(--camel);
+            content: '';
+            width: 4px;
+            height: 4px;
+            background: var(--camel);
+            border-radius: 50%;
         }
 
         @keyframes marquee {
@@ -391,415 +232,264 @@
             100% { transform: translateX(-50%); }
         }
 
+        /* Street Shop Section */
+        .street-shop {
+            background: var(--charcoal);
+            color: var(--pure-white);
+            padding: 8rem 4rem;
+            text-align: center;
+        }
+
+        .street-shop h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 1.5rem;
+        }
+
+        .street-shop p {
+            font-size: 0.9rem;
+            color: var(--mid-gray);
+            max-width: 500px;
+            margin: 0 auto 2rem;
+            line-height: 1.8;
+        }
+
+        .street-tag {
+            display: inline-block;
+            padding: 0.6rem 1.5rem;
+            border: 1px solid var(--mid-gray);
+            font-size: 0.7rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+
         /* Collection Section */
         .collection {
-            padding: 10rem 4rem;
-            background: var(--void);
-            position: relative;
+            padding: 6rem 4rem;
+            background: var(--pure-white);
         }
 
         .section-header {
             display: flex;
             justify-content: space-between;
-            align-items: flex-end;
-            margin-bottom: 6rem;
-        }
-
-        .section-label {
-            font-size: 0.65rem;
-            letter-spacing: 0.4em;
-            text-transform: uppercase;
-            color: var(--ash);
-            margin-bottom: 1rem;
+            align-items: center;
+            margin-bottom: 3rem;
         }
 
         .section-title {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(2.5rem, 6vw, 5rem);
-            font-weight: 300;
-            line-height: 1;
-        }
-
-        .section-title .title-line {
-            display: block;
-        }
-
-        .section-title .title-line:nth-child(2) {
-            font-style: italic;
-            color: var(--camel);
-            transform: translateX(20%);
-            margin-top: 0.3rem;
-        }
-
-        .view-all {
-            font-size: 0.7rem;
-            letter-spacing: 0.2em;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
             text-transform: uppercase;
-            color: var(--fog);
-            text-decoration: none;
-            border-bottom: 1px solid var(--smoke);
-            padding-bottom: 0.5rem;
-            transition: all 0.4s;
-        }
-
-        .view-all:hover {
-            color: var(--cream);
-            border-color: var(--camel);
         }
 
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
+            grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
         }
 
         .product-card {
             position: relative;
-            overflow: hidden;
             cursor: pointer;
-            transition: transform 0.6s ease;
+            transition: transform 0.4s ease;
         }
 
-        .product-card:nth-child(1) { transform: translateY(0); }
-        .product-card:nth-child(2) { transform: translateY(4rem); }
-        .product-card:nth-child(3) { transform: translateY(2rem); }
-        .product-card:nth-child(4) { transform: translateY(5rem); }
-
         .product-card:hover {
-            transform: translateY(-1rem) !important;
+            transform: translateY(-8px);
         }
 
         .product-image {
             aspect-ratio: 3/4;
-            background: var(--ink);
+            background: var(--off-white);
             position: relative;
             overflow: hidden;
-            border: 1px solid var(--smoke);
+            margin-bottom: 1rem;
         }
 
         .product-image::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, var(--charcoal) 0%, var(--smoke) 100%);
-            transition: transform 0.8s ease;
+            background: linear-gradient(135deg, var(--light-gray) 0%, var(--mid-gray) 100%);
+            transition: transform 0.6s ease;
         }
 
         .product-card:hover .product-image::before {
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
 
         .product-tag {
             position: absolute;
-            top: 1.5rem;
-            left: 1.5rem;
+            top: 1rem;
+            left: 1rem;
             font-size: 0.6rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            padding: 0.6rem 1rem;
-            background: var(--blood);
-            color: var(--cream);
-            z-index: 2;
-        }
-
-        .product-info {
-            padding: 2rem 0;
-        }
-
-        .product-name {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.4rem;
-            font-weight: 400;
-            margin-bottom: 0.8rem;
-            color: var(--cream);
-        }
-
-        .product-price {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 0.85rem;
-            color: var(--camel);
             letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 0.4rem 0.8rem;
+            background: var(--pure-white);
+            border: 1px solid var(--dark-gray);
         }
 
-        /* Editorial Section */
-        .editorial {
-            background: var(--ink);
-            padding: 12rem 4rem;
+        .product-info h3 {
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--dark-gray);
+        }
+
+        .product-info .price {
+            font-size: 0.75rem;
+            color: var(--mid-gray);
+        }
+
+        /* Featured Section */
+        .featured {
+            background: var(--charcoal);
+            color: var(--pure-white);
+            padding: 6rem 4rem;
+        }
+
+        .featured-container {
+            max-width: 1200px;
+            margin: 0 auto;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 6rem;
+            gap: 4rem;
             align-items: center;
-            position: relative;
-            overflow: hidden;
         }
 
-        .editorial::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            width: 1px;
-            height: 60%;
-            background: linear-gradient(to bottom, transparent, var(--camel), transparent);
-            transform: translate(-50%, -50%);
-            opacity: 0.3;
+        .featured-content h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
         }
 
-        .editorial-left {
-            position: relative;
+        .featured-content p {
+            font-size: 0.85rem;
+            color: var(--mid-gray);
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            max-width: 400px;
         }
 
-        .editorial-image-wrap {
-            position: relative;
-            width: 90%;
-            aspect-ratio: 4/5;
-            overflow: hidden;
-            border: 1px solid var(--smoke);
-        }
-
-        .editorial-image {
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(135deg, var(--charcoal) 0%, var(--ink) 100%);
-            position: relative;
-        }
-
-        .editorial-image::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border: 1px solid var(--camel);
-            margin: 2rem;
-            opacity: 0.3;
-        }
-
-        .editorial-quote-box {
-            position: absolute;
-            bottom: -3rem;
-            right: -3rem;
-            background: var(--void);
-            padding: 3rem;
-            max-width: 320px;
-            border: 1px solid var(--smoke);
-            transform: rotate(2deg);
-        }
-
-        .editorial-quote-box p {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 1.5rem;
-            font-style: italic;
-            line-height: 1.5;
-            color: var(--cream);
-        }
-
-        .editorial-quote-box .quote-author {
-            font-family: 'Inter', sans-serif;
+        .featured-btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: var(--pure-white);
+            color: var(--black);
+            text-decoration: none;
             font-size: 0.7rem;
-            letter-spacing: 0.2em;
+            font-weight: 600;
+            letter-spacing: 0.1em;
             text-transform: uppercase;
-            color: var(--camel);
-            margin-top: 1.5rem;
-            font-style: normal;
+            border-radius: 30px;
+            transition: all 0.3s;
         }
 
-        .editorial-right {
-            padding-left: 2rem;
+        .featured-btn:hover {
+            background: var(--camel);
+            color: var(--pure-white);
         }
 
-        .editorial-label {
-            font-size: 0.65rem;
-            letter-spacing: 0.4em;
+        .featured-image {
+            aspect-ratio: 1;
+            background: var(--off-white);
+            position: relative;
+        }
+
+        /* Sub Collection */
+        .sub-collection {
+            padding: 4rem;
+            background: var(--pure-white);
+        }
+
+        .sub-collection h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
             text-transform: uppercase;
-            color: var(--ash);
-            margin-bottom: 2rem;
-        }
-
-        .editorial h2 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(2rem, 4vw, 3.5rem);
-            font-weight: 300;
+            text-align: center;
             margin-bottom: 3rem;
-            line-height: 1.1;
         }
 
-        .editorial h2 .line-1 {
-            display: block;
-            transform: translateX(-5%);
-        }
-
-        .editorial h2 .line-2 {
-            display: block;
-            font-style: italic;
-            color: var(--camel);
-            transform: translateX(10%);
-            margin-top: 0.5rem;
-        }
-
-        .editorial p {
-            font-size: 0.95rem;
-            line-height: 2.2;
-            color: var(--fog);
-            margin-bottom: 2rem;
-            max-width: 480px;
-        }
-
-        .heritage-grid {
+        .sub-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
-            margin-top: 4rem;
-            padding-top: 3rem;
-            border-top: 1px solid var(--smoke);
         }
 
-        .heritage-item {
+        .sub-card {
+            border: 1px solid var(--light-gray);
+            padding: 1.5rem;
             text-align: center;
+            transition: all 0.3s;
         }
 
-        .heritage-number {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.5rem;
-            font-style: italic;
-            color: var(--camel);
-            display: block;
+        .sub-card:hover {
+            border-color: var(--dark-gray);
+        }
+
+        .sub-image {
+            aspect-ratio: 1;
+            background: var(--off-white);
             margin-bottom: 1rem;
         }
 
-        .heritage-label {
-            font-size: 0.65rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--ash);
+        .sub-card h4 {
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
         }
 
-        /* Categories */
-        .categories {
-            padding: 10rem 4rem;
-            background: var(--void);
-        }
-
-        .cat-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-        }
-
-        .cat-card {
-            position: relative;
-            aspect-ratio: 1;
-            overflow: hidden;
-            cursor: pointer;
-            background: var(--ink);
-            border: 1px solid var(--smoke);
-            transition: all 0.6s ease;
-        }
-
-        .cat-card:hover {
-            border-color: var(--camel);
-            transform: translateY(-0.5rem);
-        }
-
-        .cat-card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, transparent 0%, rgba(139,115,85,0.1) 100%);
-            opacity: 0;
-            transition: opacity 0.6s;
-        }
-
-        .cat-card:hover::before {
-            opacity: 1;
-        }
-
-        .cat-content {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 3rem;
-        }
-
-        .cat-number {
-            font-family: 'Space Grotesk', sans-serif;
+        .sub-card p {
             font-size: 0.7rem;
-            letter-spacing: 0.3em;
-            margin-bottom: 1.5rem;
-            color: var(--ash);
-            transition: color 0.4s;
-        }
-
-        .cat-card:hover .cat-number {
-            color: var(--camel);
-        }
-
-        .cat-name {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: clamp(1.5rem, 3vw, 2.5rem);
-            font-weight: 300;
-            margin-bottom: 2rem;
-            transition: transform 0.4s;
-        }
-
-        .cat-card:hover .cat-name {
-            transform: translateY(-0.5rem);
-        }
-
-        .cat-link {
-            font-size: 0.7rem;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--ash);
-            border-bottom: 1px solid var(--smoke);
-            padding-bottom: 0.5rem;
-            transition: all 0.4s;
-        }
-
-        .cat-card:hover .cat-link {
-            color: var(--cream);
-            border-color: var(--camel);
+            color: var(--mid-gray);
         }
 
         /* Footer */
         footer {
-            background: var(--ink);
-            color: var(--cream);
-            padding: 6rem 4rem 3rem;
-            border-top: 1px solid var(--smoke);
+            background: var(--charcoal);
+            color: var(--pure-white);
+            padding: 4rem;
+            border-top: 1px solid var(--dark-gray);
         }
 
-        .footer-top {
+        .footer-grid {
             display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 6rem;
-            margin-bottom: 6rem;
+            grid-template-columns: 2fr repeat(3, 1fr);
+            gap: 4rem;
+            margin-bottom: 4rem;
         }
 
         .footer-brand h3 {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 2.5rem;
-            font-weight: 300;
-            letter-spacing: 0.2em;
-            margin-bottom: 2rem;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
         }
 
         .footer-brand p {
-            font-size: 0.9rem;
-            color: var(--fog);
-            line-height: 2;
-            max-width: 320px;
+            font-size: 0.8rem;
+            color: var(--mid-gray);
+            line-height: 1.8;
+            max-width: 300px;
         }
 
         .footer-col h4 {
-            font-family: 'Space Grotesk', sans-serif;
             font-size: 0.7rem;
-            letter-spacing: 0.3em;
+            font-weight: 600;
+            letter-spacing: 0.1em;
             text-transform: uppercase;
-            margin-bottom: 2.5rem;
-            color: var(--camel);
+            margin-bottom: 1.5rem;
+            color: var(--mid-gray);
         }
 
         .footer-col ul {
@@ -807,407 +497,250 @@
         }
 
         .footer-col li {
-            margin-bottom: 1.2rem;
+            margin-bottom: 0.8rem;
         }
 
         .footer-col a {
-            color: var(--fog);
+            color: var(--pure-white);
             text-decoration: none;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             transition: color 0.3s;
-            position: relative;
-        }
-
-        .footer-col a::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: var(--camel);
-            transition: width 0.3s;
         }
 
         .footer-col a:hover {
-            color: var(--cream);
-        }
-
-        .footer-col a:hover::after {
-            width: 100%;
+            color: var(--camel);
         }
 
         .footer-bottom {
-            border-top: 1px solid var(--smoke);
-            padding-top: 3rem;
+            border-top: 1px solid var(--dark-gray);
+            padding-top: 2rem;
             display: flex;
             justify-content: space-between;
             font-size: 0.7rem;
-            color: var(--ash);
-            letter-spacing: 0.1em;
+            color: var(--mid-gray);
         }
 
-        /* Parallax elements */
-        .parallax-slow {
-            will-change: transform;
-        }
-
-        .parallax-fast {
-            will-change: transform;
-        }
-
-        /* Mobile Responsive */
+        /* Mobile */
         @media (max-width: 1024px) {
-            .hero {
+            .hero-container {
                 grid-template-columns: 1fr;
-                padding: 0 2rem;
+                padding: 2rem;
             }
 
-            .hero-left {
-                padding-top: 10rem;
-                padding-bottom: 4rem;
-            }
-
-            .hero-right {
+            .hero-image-area {
                 display: none;
             }
 
-            .hero-tagline .line-2,
-            .hero-tagline .line-3,
-            .hero-sub,
-            .cta-group {
-                transform: none;
-            }
-
-            .product-grid {
+            .product-grid,
+            .sub-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
 
-            .product-card:nth-child(1),
-            .product-card:nth-child(2),
-            .product-card:nth-child(3),
-            .product-card:nth-child(4) {
-                transform: none;
-            }
-
-            .editorial {
-                grid-template-columns: 1fr;
-                padding: 6rem 2rem;
-            }
-
-            .editorial::before {
-                display: none;
-            }
-
-            .editorial-quote-box {
-                position: relative;
-                bottom: auto;
-                right: auto;
-                margin-top: 2rem;
-                transform: none;
-            }
-
-            .cat-grid {
+            .featured-container {
                 grid-template-columns: 1fr;
             }
 
-            .footer-top {
+            .footer-grid {
                 grid-template-columns: 1fr 1fr;
-                gap: 3rem;
             }
         }
 
         @media (max-width: 768px) {
             nav {
-                padding: 1.5rem 1.5rem;
-            }
-
-            nav.scrolled {
                 padding: 1rem 1.5rem;
             }
 
-            .nav-links {
+            .nav-center {
                 display: none;
             }
 
+            .hero-container,
             .collection,
-            .categories {
-                padding: 6rem 1.5rem;
+            .featured,
+            .sub-collection,
+            footer {
+                padding: 2rem 1.5rem;
             }
 
-            .section-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 2rem;
-            }
-
-            .product-grid {
+            .product-grid,
+            .sub-grid {
                 grid-template-columns: 1fr;
             }
 
-            .heritage-grid {
+            .footer-grid {
                 grid-template-columns: 1fr;
                 gap: 2rem;
             }
-
-            .footer-top {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-bottom {
-                flex-direction: column;
-                gap: 1rem;
-                text-align: center;
-            }
-        }
-
-        /* Reveal animations */
-        .reveal {
-            opacity: 0;
-            transform: translateY(60px);
-            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .reveal-left {
-            opacity: 0;
-            transform: translateX(-60px);
-            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .reveal-left.active {
-            opacity: 1;
-            transform: translateX(0);
-        }
-
-        .reveal-right {
-            opacity: 0;
-            transform: translateX(60px);
-            transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .reveal-right.active {
-            opacity: 1;
-            transform: translateX(0);
         }
     </style>
 </head>
 <body>
     <!-- Navigation -->
-    <nav id="navbar">
+    <nav>
         <div class="logo">Velôrte</div>
-        <ul class="nav-links">
-            <li><a href="#collection">Collection</a></li>
-            <li><a href="#heritage">Heritage</a></li>
-            <li><a href="#categories">Categories</a></li>
-            <li><a href="#journal">Journal</a></li>
+        <ul class="nav-center">
+            <li><a href="#">Women</a></li>
+            <li><a href="#">Men</a></li>
+            <li><a href="#">Brands</a></li>
+            <li><a href="#">Collections</a></li>
+            <li><a href="#">Drop</a></li>
+            <li><a href="#">Sale</a></li>
         </ul>
         <div class="nav-right">
-            <span>Search</span>
-            <span>Account</span>
-            <span>Bag (0)</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M6 6 5 3H2"/></svg>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-left">
-            <h1 class="hero-tagline parallax-slow">
-                <span class="line-1">Wanna be</span>
-                <span class="line-2">different</span>
-                <span class="line-3">wear Velôrte</span>
-            </h1>
-            <p class="hero-sub reveal">
-                Where old money heritage meets street culture. Crafted for those who don't follow—they lead. Limited drops. No restocks. Only the worthy.
-            </p>
-            <div class="cta-group reveal">
-                <a href="#collection" class="cta-btn">Explore Drop 01</a>
-                <a href="#heritage" class="cta-link">Our Heritage →</a>
+        <div class="hero-container">
+            <div class="hero-content">
+                <span class="hero-tag">New Collection</span>
+                <h1 class="hero-title">
+                    <span class="line-1">Wanna be</span>
+                    <span class="line-2">different</span>
+                </h1>
             </div>
-        </div>
-        <div class="hero-right">
-            <div class="hero-image-container parallax-fast">
+            <div class="hero-image-area">
                 <div class="hero-image"></div>
-                <div class="floating-tag">
-                    <h3>Drop 01</h3>
-                    <p>Signature Hoodie</p>
-                </div>
+                <div class="hero-thumb"></div>
             </div>
-        </div>
-        <div class="scroll-indicator">
-            <span>Scroll</span>
-            <div class="scroll-line"></div>
         </div>
     </section>
 
-    <!-- Marquee -->
+    <!-- Brand Marquee -->
     <section class="marquee-section">
         <div class="marquee-track">
-            <span class="marquee-item">Old Money Aesthetic</span>
-            <span class="marquee-item">Streetwear Edge</span>
-            <span class="marquee-item">Quiet Luxury</span>
+            <span class="marquee-item">Velôrte Originals</span>
+            <span class="marquee-item">Old Money</span>
+            <span class="marquee-item">Streetwear</span>
             <span class="marquee-item">Limited Drops</span>
             <span class="marquee-item">No Restocks</span>
             <span class="marquee-item">Heritage Craft</span>
-            <span class="marquee-item">Urban Silhouettes</span>
-            <span class="marquee-item">Old Money Aesthetic</span>
-            <span class="marquee-item">Streetwear Edge</span>
-            <span class="marquee-item">Quiet Luxury</span>
+            <span class="marquee-item">Urban Luxury</span>
+            <span class="marquee-item">Velôrte Originals</span>
+            <span class="marquee-item">Old Money</span>
+            <span class="marquee-item">Streetwear</span>
             <span class="marquee-item">Limited Drops</span>
             <span class="marquee-item">No Restocks</span>
             <span class="marquee-item">Heritage Craft</span>
-            <span class="marquee-item">Urban Silhouettes</span>
+            <span class="marquee-item">Urban Luxury</span>
         </div>
+    </section>
+
+    <!-- Street Shop Section -->
+    <section class="street-shop">
+        <h2>Wanna be different,<br>wear Velôrte</h2>
+        <p>Where old money heritage meets street culture. Crafted for those who don't follow—they lead. Limited drops. No restocks. Only the worthy.</p>
+        <span class="street-tag">100% Legit</span>
     </section>
 
     <!-- Collection Section -->
-    <section class="collection" id="collection">
+    <section class="collection">
         <div class="section-header">
-            <div>
-                <p class="section-label reveal">The Selection</p>
-                <h2 class="section-title reveal">
-                    <span class="title-line">Curated</span>
-                    <span class="title-line">Pieces</span>
-                </h2>
-            </div>
-            <a href="#" class="view-all reveal">View All Collection →</a>
+            <h2 class="section-title">The Collection</h2>
         </div>
-
         <div class="product-grid">
-            <div class="product-card reveal-left">
+            <div class="product-card">
                 <div class="product-image">
                     <span class="product-tag">New</span>
                 </div>
                 <div class="product-info">
-                    <h3 class="product-name">The Signature Hoodie</h3>
-                    <p class="product-price">₹4,999</p>
+                    <h3>Signature Hoodie</h3>
+                    <p class="price">₹4,999</p>
                 </div>
             </div>
-
-            <div class="product-card reveal">
+            <div class="product-card">
                 <div class="product-image">
                     <span class="product-tag">Heritage</span>
                 </div>
                 <div class="product-info">
-                    <h3 class="product-name">Camel Overcoat</h3>
-                    <p class="product-price">₹12,999</p>
+                    <h3>Camel Overcoat</h3>
+                    <p class="price">₹12,999</p>
                 </div>
             </div>
-
-            <div class="product-card reveal">
+            <div class="product-card">
                 <div class="product-image">
                     <span class="product-tag">Street</span>
                 </div>
                 <div class="product-info">
-                    <h3 class="product-name">Structured Cap</h3>
-                    <p class="product-price">₹2,499</p>
+                    <h3>Structured Cap</h3>
+                    <p class="price">₹2,499</p>
                 </div>
             </div>
-
-            <div class="product-card reveal-right">
+            <div class="product-card">
                 <div class="product-image">
                     <span class="product-tag">Limited</span>
                 </div>
                 <div class="product-info">
-                    <h3 class="product-name">Heritage Tote</h3>
-                    <p class="product-price">₹8,999</p>
+                    <h3>Heritage Tote</h3>
+                    <p class="price">₹8,999</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="product-tag">New</span>
+                </div>
+                <div class="product-info">
+                    <h3>Street Jacket</h3>
+                    <p class="price">₹7,999</p>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image">
+                    <span class="product-tag">Drop 01</span>
+                </div>
+                <div class="product-info">
+                    <h3>Velôrte Tee</h3>
+                    <p class="price">₹2,999</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Editorial Section -->
-    <section class="editorial" id="heritage">
-        <div class="editorial-left reveal-left">
-            <div class="editorial-image-wrap">
-                <div class="editorial-image"></div>
+    <!-- Featured Section -->
+    <section class="featured">
+        <div class="featured-container">
+            <div class="featured-content">
+                <h2>Drop 01</h2>
+                <p>The best of this season. Premium essentials crafted with intention. Every piece tells a story of heritage meeting the streets.</p>
+                <a href="#" class="featured-btn">Shop Now</a>
             </div>
-            <div class="editorial-quote-box parallax-fast">
-                <p>"Not made for everyone. Made for those who understand."</p>
-                <span class="quote-author">— The Velôrte Code</span>
-            </div>
-        </div>
-        <div class="editorial-right reveal-right">
-            <p class="editorial-label">Our Philosophy</p>
-            <h2>
-                <span class="line-1">A Study in</span>
-                <span class="line-2">Quiet Luxury</span>
-            </h2>
-            <p>
-                Velôrte exists at the intersection of heritage and rebellion. We craft pieces that speak softly but carry undeniable weight—garments that feel like they've been inherited, yet worn with street-level confidence.
-            </p>
-            <p>
-                Every stitch is intentional. Every drop is limited. We don't do restocks because true luxury isn't about availability—it's about discernment.
-            </p>
-
-            <div class="heritage-grid">
-                <div class="heritage-item">
-                    <span class="heritage-number">01</span>
-                    <span class="heritage-label">Italian Fabrics</span>
-                </div>
-                <div class="heritage-item">
-                    <span class="heritage-number">02</span>
-                    <span class="heritage-label">Urban Silhouettes</span>
-                </div>
-                <div class="heritage-item">
-                    <span class="heritage-number">03</span>
-                    <span class="heritage-label">No Restocks</span>
-                </div>
-            </div>
+            <div class="featured-image"></div>
         </div>
     </section>
 
-    <!-- Categories -->
-    <section class="categories" id="categories">
-        <div class="section-header">
-            <div>
-                <p class="section-label reveal">Browse</p>
-                <h2 class="section-title reveal">
-                    <span class="title-line">Shop by</span>
-                    <span class="title-line">Category</span>
-                </h2>
+    <!-- Sub Collection -->
+    <section class="sub-collection">
+        <h3>Collection Drop 01</h3>
+        <div class="sub-grid">
+            <div class="sub-card">
+                <div class="sub-image"></div>
+                <h4>Signature Hoodie</h4>
+                <p>₹4,999</p>
             </div>
-        </div>
-
-        <div class="cat-grid">
-            <div class="cat-card reveal">
-                <div class="cat-content">
-                    <span class="cat-number">01</span>
-                    <h3 class="cat-name">Old Money</h3>
-                    <span class="cat-link">Explore →</span>
-                </div>
+            <div class="sub-card">
+                <div class="sub-image"></div>
+                <h4>Crewneck Sweat</h4>
+                <p>₹3,499</p>
             </div>
-
-            <div class="cat-card reveal">
-                <div class="cat-content">
-                    <span class="cat-number">02</span>
-                    <h3 class="cat-name">Streetwear</h3>
-                    <span class="cat-link">Explore →</span>
-                </div>
-            </div>
-
-            <div class="cat-card reveal">
-                <div class="cat-content">
-                    <span class="cat-number">03</span>
-                    <h3 class="cat-name">Accessories</h3>
-                    <span class="cat-link">Explore →</span>
-                </div>
+            <div class="sub-card">
+                <div class="sub-image"></div>
+                <h4>Street Shorts</h4>
+                <p>₹2,999</p>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
     <footer>
-        <div class="footer-top">
+        <div class="footer-grid">
             <div class="footer-brand">
                 <h3>Velôrte</h3>
-                <p>Wanna be different, wear Velôrte. Where heritage meets the streets. Crafted for those who lead, not follow.</p>
+                <p>Wanna be different, wear Velôrte. Where heritage meets the streets.</p>
             </div>
-
             <div class="footer-col">
                 <h4>Shop</h4>
                 <ul>
@@ -1217,7 +750,6 @@
                     <li><a href="#">Accessories</a></li>
                 </ul>
             </div>
-
             <div class="footer-col">
                 <h4>Brand</h4>
                 <ul>
@@ -1227,7 +759,6 @@
                     <li><a href="#">Contact</a></li>
                 </ul>
             </div>
-
             <div class="footer-col">
                 <h4>Connect</h4>
                 <ul>
@@ -1237,74 +768,10 @@
                 </ul>
             </div>
         </div>
-
         <div class="footer-bottom">
             <span>© 2026 Velôrte. All rights reserved.</span>
-            <span>Made with intention. No restocks.</span>
+            <span>No restocks. Made with intention.</span>
         </div>
     </footer>
-
-    <script>
-        // Navbar scroll effect
-        const navbar = document.getElementById('navbar');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 100) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-
-        // Parallax effect
-        const parallaxSlow = document.querySelectorAll('.parallax-slow');
-        const parallaxFast = document.querySelectorAll('.parallax-fast');
-
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-
-            parallaxSlow.forEach(el => {
-                el.style.transform = `translateY(${scrolled * 0.15}px)`;
-            });
-
-            parallaxFast.forEach(el => {
-                el.style.transform = `translateY(${scrolled * 0.08}px)`;
-            });
-        });
-
-        // Reveal animations on scroll
-        const revealElements = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
-
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                }
-            });
-        }, {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        });
-
-        revealElements.forEach(el => revealObserver.observe(el));
-
-        // Hero image load animation
-        window.addEventListener('load', () => {
-            document.querySelector('.hero-image').classList.add('loaded');
-        });
-
-        // Smooth scroll for nav links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-    </script>
 </body>
 </html>
