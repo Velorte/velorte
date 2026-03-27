@@ -9,41 +9,79 @@
       margin: 0;
       background: #0a0a0a;
       color: white;
-      font-family: serif;
-      text-align: center;
-      scroll-behavior: smooth;
+      font-family: 'Times New Roman', serif;
+      overflow-x: hidden;
     }
 
     section {
       height: 100vh;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
+      text-align: center;
+      position: relative;
       padding: 20px;
     }
 
     h1 {
-      font-size: 60px;
-      letter-spacing: 4px;
+      font-size: 70px;
+      letter-spacing: 6px;
     }
 
     p {
-      color: #aaa;
-      max-width: 300px;
+      color: #bbb;
+      font-size: 18px;
+      line-height: 1.6;
+      max-width: 320px;
     }
 
-    img {
-      width: 100%;
-      max-width: 400px;
+    .hero p {
+      font-size: 14px;
+      letter-spacing: 2px;
     }
 
     .btn {
       margin-top: 20px;
-      padding: 10px 20px;
+      padding: 12px 28px;
       border: 1px solid white;
       color: white;
       text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .btn:hover {
+      background: white;
+      color: black;
+    }
+
+    .image-section {
+      background-size: cover;
+      background-position: center;
+    }
+
+    .overlay {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.4);
+      top: 0;
+      left: 0;
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .fade {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: 1s;
+    }
+
+    .fade.show {
+      opacity: 1;
+      transform: translateY(0);
     }
   </style>
 </head>
@@ -51,36 +89,57 @@
 <body>
 
 <!-- HERO -->
-<section>
-  <h1>VELÔRTE</h1>
-  <p>A study in quiet luxury</p>
-  <a href="#image" class="btn">ENTER</a>
+<section class="hero">
+  <div class="content fade">
+    <h1>VELÔRTE</h1>
+    <p>A STUDY IN QUIET LUXURY</p>
+    <a href="#img" class="btn">ENTER</a>
+  </div>
 </section>
 
 <!-- IMAGE -->
-<section id="image">
-  <img src="https://images.unsplash.com/photo-1503341504253-dff4815485f1">
+<section id="img" class="image-section" style="background-image:url('https://images.unsplash.com/photo-1520975916090-3105956dac38');">
+  <div class="overlay"></div>
 </section>
 
 <!-- TEXT -->
 <section>
-  <p>
-    Not made for everyone.<br><br>
-    Only for those who understand.
-  </p>
+  <div class="content fade">
+    <p>
+      Not made for everyone.<br><br>
+      Only for those who understand.
+    </p>
+  </div>
 </section>
 
 <!-- PRODUCT -->
 <section>
-  <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d">
-  <p>Signature Hoodie<br>₹4,999</p>
-  <a class="btn" href="https://wa.me/8917465586">ORDER</a>
+  <div class="content fade">
+    <img src="https://via.placeholder.com/400x500">
+    <p>Signature Hoodie<br>₹4,999</p>
+    <a class="btn" href="https://wa.me/8917465586">ORDER</a>
+  </div>
 </section>
 
 <!-- DROP -->
 <section>
-  <p>DROP 01<br><br>Limited.<br>No restocks.</p>
+  <div class="content fade">
+    <p>DROP 01<br><br>Limited.<br>No restocks.</p>
+  </div>
 </section>
+
+<script>
+  const fades = document.querySelectorAll('.fade');
+
+  window.addEventListener('scroll', () => {
+    fades.forEach(el => {
+      const top = el.getBoundingClientRect().top;
+      if (top < window.innerHeight - 100) {
+        el.classList.add('show');
+      }
+    });
+  });
+</script>
 
 </body>
 </html>
