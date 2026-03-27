@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Velôrte | Wanna be different, wear Velôrte</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #141414;
+            --accent-gold: #d4af37;
+            --accent-copper: #b87333;
+            --accent-cream: #f5f5dc;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --border-subtle: #2a2a2a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: linear-gradient(to bottom, var(--bg-primary), transparent);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            color: var(--accent-gold);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-gold);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-left: 2rem;
+        }
+
+        .social-links a {
+            width: 36px;
+            height: 36px;
+            border: 1px solid var(--border-subtle);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            color: var(--text-secondary);
+        }
+
+        .social-links a:hover {
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
+            transform: translateY(-2px);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(212,175,55,0.15) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-tagline {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 10vw, 8rem);
+            font-weight: 900;
+            line-height: 0.9;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-tagline .stretch {
+            display: block;
+            font-size: 1.2em;
+            letter-spacing: 0.05em;
+            transform: scaleX(1.1);
+            margin-left: -5%;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            gap: 1rem;
+            align-items: center;
+            padding: 0.75rem 1.5rem;
+            border: 1px solid var(--border-subtle);
+            border-radius: 100px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .hero-badge span {
+            color: var(--accent-gold);
+        }
+
+        /* Collection Navigation */
+        .collection-nav {
+            position: fixed;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 100;
+            padding: 2rem;
+        }
+
+        .collection-nav ul {
+            list-style: none;
+        }
+
+        .collection-nav li {
+            margin: 1rem 0;
+        }
+
+        .collection-nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            transition: all 0.3s;
+            display: block;
+            padding: 0.5rem;
+        }
+
+        .collection-nav a:hover,
+        .collection-nav a.active {
+            color: var(--accent-gold);
+            transform: translateX(5px);
+        }
+
+        /* Product Sections */
+        .collection-section {
+            min-height: 100vh;
+            padding: 6rem 4rem 4rem 8rem;
+            display: none;
+        }
+
+        .collection-section.active {
+            display: block;
+        }
+
+        .section-header {
+            margin-bottom: 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .section-title .asymmetric {
+            display: block;
+            font-size: 0.6em;
+            color: var(--accent-copper);
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            margin-top: 0.5rem;
+            transform: translateX(20px);
+        }
+
+        .section-count {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Product Grid */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-subtle);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.4s;
+            cursor: pointer;
+        }
+
+        .product-card:hover {
+            border-color: var(--accent-gold);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(212,175,55,0.1);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2a2a2a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-image::after {
+            content: 'View';
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent-gold);
+            color: var(--bg-primary);
+            padding: 0.5rem 1.5rem;
+            border-radius: 100px;
+            font-weight: 600;
+            font-size: 0.8rem;
+            transition: bottom 0.3s;
+        }
+
+        .product-card:hover .product-image::after {
+            bottom: 20px;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+        }
+
+        .product-price {
+            color: var(--accent-gold);
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .product-tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: rgba(212,175,55,0.1);
+            color: var(--accent-gold);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border-radius: 4px;
+            margin-top: 0.75rem;
+        }
+
+        /* Cart Sidebar */
+        .cart-sidebar {
+            position: fixed;
+            right: -400px;
+            top: 0;
+            width: 400px;
+            height: 100vh;
+            background: var(--bg-secondary);
+            border-left: 1px solid var(--border-subtle);
+            z-index: 2000;
+            transition: right 0.4s;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        .cart-sidebar.open {
+            right: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .cart-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+        }
+
+        .close-cart {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--border-subtle);
+        }
+
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            background: var(--bg-primary);
+            border-radius: 4px;
+        }
+
+        .cart-item-details h4 {
+            font-size: 0.95rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .cart-item-details p {
+            color: var(--accent-gold);
+            font-weight: 600;
+        }
+
+        .cart-total {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 2px solid var(--border-subtle);
+        }
+
+        .cart-row {
+            display: flex;
+            justify-content: space-between;
+            margin: 0.5rem 0;
+            color: var(--text-secondary);
+        }
+
+        .cart-row.total {
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--accent-gold);
+            color: var(--bg-primary);
+            border: none;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 1.5rem;
+            transition: all 0.3s;
+        }
+
+        .checkout-btn:hover {
+            background: var(--accent-copper);
+            transform: translateY(-2px);
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1500;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .collection-nav {
+                position: static;
+                transform: none;
+                padding: 1rem;
+                background: var(--bg-secondary);
+            }
+
+            .collection-nav ul {
+                display: flex;
+                overflow-x: auto;
+                gap: 1rem;
+            }
+
+            .collection-nav li {
+                margin: 0;
+            }
+
+            .collection-nav a {
+                writing-mode: horizontal-tb;
+                white-space: nowrap;
+            }
+
+            .collection-section {
+                padding: 2rem 1rem;
+            }
+
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .cart-sidebar {
+                width: 100%;
+                right: -100%;
+            }
+
+            .nav {
+                padding: 1rem;
+            }
+
+            .social-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="logo">Velôrte</div>
+        <div class="nav-links">
+            <a href="#" onclick="toggleCart()">Cart (0)</a>
+            <a href="#">Sign In</a>
+            <div class="social-links">
+                <a href="https://instagram.com/velorte" target="_blank" aria-label="Instagram">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                        <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>
+                </a>
+                <a href="https://pinterest.com/velorte" target="_blank" aria-label="Pinterest">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <path d="M8 12c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4"></path>
+                        <path d="M12 16l-2 6"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h1 class="hero-tagline">
+            Wanna be different,
+            <span class="stretch">wear Velôrte</span>
+        </h1>
+        <p class="hero-subtitle">
+            Where old money heritage meets street culture. Crafted for those who don't follow—they lead. Limited drops. No restocks. Only the worthy.
+        </p>
+        <div class="hero-badge">
+            <span>★</span>
+            100% Legit • Print on Demand
+        </div>
+    </section>
+
+    <!-- Collection Navigation -->
+    <nav class="collection-nav">
+        <ul>
+            <li><a href="#new" class="active" onclick="showCollection('new')">New Collections</a></li>
+            <li><a href="#latest" onclick="showCollection('latest')">Latest Drop</a></li>
+            <li><a href="#streetwear" onclick="showCollection('streetwear')">Streetwear</a></li>
+            <li><a href="#oldmoney" onclick="showCollection('oldmoney')">Old Money</a></li>
+            <li><a href="#gym" onclick="showCollection('gym')">Gym Wear</a></li>
+            <li><a href="#accessories" onclick="showCollection('accessories')">Accessories</a></li>
+        </ul>
+    </nav>
+
+    <!-- Collection Sections -->
+    <section class="collection-section active" id="new">
+        <div class="section-header">
+            <h2 class="section-title">
+                New Collections
+                <span class="asymmetric">Fresh Arrivals</span>
+            </h2>
+            <span class="section-count">12 items</span>
+        </div>
+        <div class="product-grid">
+            <div class="product-card" onclick="addToCart('The Signature Hoodie', 4999)">
+                <div class="product-image">[Product Image]</div>
+                <div class="product-info">
+                    <h3 class="product-name">The Signature Hoodie</h3>
+                    <p class="product-price">₹4,999</p>
+                    <span class="product-tag">Bestseller</span>
+                </div>
+            </div>
+            <div class="product-card" onclick="addToCart('Velvet Oversized Tee', 2999)">
+                <div class="product-image">[Product Image]</div>
+                <div class="product-info">
+                    <h3 class="product-name">Velvet Oversized Tee</h3>
+                    <p class="product-price">₹2,999</p>
+                    <span class="product-tag">New</span>
+                </div>
+            </div>
+            <div class="product-card" onclick="addToCart('Heritage Cargo Pants', 5499)">
+                <div class="product-image">[Product Image]</div>
+                <div class="product-info">
+                    <h3 class="product-name">Heritage Cargo Pants</h3>
+                    <p class="product-price">₹5,499</p>
+                    <span class="product-tag">Limited</span>
+                </div>
+            </div>
+            <div class="product-card" onclick="addToCart('Monogram Bucket Hat', 1999)">
+                <div class="product-image">[Product Image]</div>
+                <div class="product-info">
+                    <h3 class="product-name">Monogram Bucket Hat</h3>
+                    <p class="product-price">₹1,999</p>
+                    <span class="product-tag">Accessory</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="collection-section" id="latest">
+        <div class="section-header">
+            <h2 class="section-title">
+                Latest Drop
+                <span class="asymmetric">Just Released</span>
+            </h2>
+            <span class="section-count">8 items</span>
+        </div>
+        <div class="product-grid">
+            <div class="product-card" onclick="addToCart('Midnight Bomber Jacket', 7999)">
+                <div class="product-image">[Product Image]</div>
+                <div class="product-info">
+                    <h3 class="product-name">Midnight Bomber Jacket</h3>
+                    <p class="product-price">₹7,999</p>
+                    <span class="product-tag">Drop 03</span>
+                </div>
+            </div>
+            <div class="product-card" onclick="addToCart('Street Luxe Sneakers', 6499)">
+                <div class="product-image">[Product Image]</div>
+                <div class="product-info">
+                    <h3 class="product-name">Street Luxe Sneakers</h3>
+                    <p class="product-price">₹6,499</p>
+                    <span class="product-tag">Collab</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="collection-section" id="streetwear">
+        <div class="section-header">
+            <h2 class="section-title">
+                Streetwear
+                <span class="asymmetric">Urban Culture</span>
+            </h2>
+            <span class="section-count">24 items</span>
+        </div>
+        <div class="product-grid">
+            <div class="product-card" onclick="addToCart('Graffiti Art Tee', 2499)">
+                <div class="product-image">[Product Image]</div>
+                <div class="product-info">
+                    <h3 class="product-name">Graffiti Art Tee</h3>
+                    <p class="product-price">₹2,499</p>
+                    <span class="product-tag">Artist Series</span>
+                </div>
+            </div>
+            <div class="product-card" onclick="addToCart('Tech Wear Joggers', 3999)">
+                <div class="product-image">[Product Image]</div>
+                <div class="product-info">
+                    <h3 class="product-name">Tech Wear Joggers</h3>
+                    <p class="product-price">₹3,99
