@@ -40,7 +40,7 @@
             position: fixed;
             top: 0;
             width: 100%;
-            padding: 1.5rem 4rem;
+            padding: 1rem 4rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -55,6 +55,7 @@
             font-weight: 700;
             letter-spacing: -0.02em;
             color: var(--black);
+            cursor: pointer;
         }
 
         .nav-center {
@@ -71,6 +72,7 @@
             letter-spacing: 0.02em;
             text-transform: capitalize;
             transition: color 0.3s;
+            cursor: pointer;
         }
 
         .nav-center a:hover {
@@ -83,15 +85,224 @@
             align-items: center;
         }
 
-        .nav-right svg {
+        .nav-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            position: relative;
+        }
+
+        .nav-btn svg {
             width: 20px;
             height: 20px;
-            cursor: pointer;
             transition: opacity 0.3s;
         }
 
-        .nav-right svg:hover {
+        .nav-btn:hover svg {
             opacity: 0.6;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            background: var(--black);
+            color: white;
+            font-size: 0.6rem;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Search Overlay */
+        .search-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.98);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .search-overlay.active {
+            display: flex;
+        }
+
+        .search-box {
+            width: 60%;
+            max-width: 600px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 1.5rem;
+            font-size: 2rem;
+            border: none;
+            border-bottom: 2px solid var(--black);
+            background: transparent;
+            outline: none;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .search-close {
+            position: absolute;
+            top: 2rem;
+            right: 4rem;
+            font-size: 2rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+
+        /* Cart Sidebar */
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 400px;
+            height: 100%;
+            background: var(--pure-white);
+            z-index: 2000;
+            transition: right 0.4s ease;
+            box-shadow: -5px 0 20px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-sidebar.active {
+            right: 0;
+        }
+
+        .cart-header {
+            padding: 2rem;
+            border-bottom: 1px solid var(--light-gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-header h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.2rem;
+        }
+
+        .cart-close {
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .cart-items {
+            flex: 1;
+            padding: 2rem;
+            overflow-y: auto;
+        }
+
+        .cart-empty {
+            text-align: center;
+            color: var(--mid-gray);
+            margin-top: 4rem;
+        }
+
+        .cart-footer {
+            padding: 2rem;
+            border-top: 1px solid var(--light-gray);
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            padding: 1rem;
+            background: var(--black);
+            color: white;
+            border: none;
+            font-size: 0.8rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .checkout-btn:hover {
+            background: var(--dark-gray);
+        }
+
+        /* Profile Modal */
+        .profile-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 2000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-modal.active {
+            display: flex;
+        }
+
+        .profile-box {
+            background: var(--pure-white);
+            padding: 3rem;
+            width: 90%;
+            max-width: 400px;
+            position: relative;
+        }
+
+        .profile-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .profile-box h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            margin-bottom: 2rem;
+        }
+
+        .profile-box input {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid var(--light-gray);
+            font-size: 0.9rem;
+        }
+
+        .profile-box button {
+            width: 100%;
+            padding: 1rem;
+            background: var(--black);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
         }
 
         /* Hero Section */
@@ -129,6 +340,13 @@
             text-transform: uppercase;
             margin-bottom: 2rem;
             background: var(--pure-white);
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .hero-tag:hover {
+            background: var(--black);
+            color: white;
         }
 
         .hero-title {
@@ -165,13 +383,6 @@
             overflow: hidden;
         }
 
-        .hero-image::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 500"><rect fill="%23ddd" width="400" height="500"/><text x="50%" y="50%" font-family="sans-serif" font-size="20" fill="%23999" text-anchor="middle">Hero Image</text></svg>') center/cover;
-        }
-
         .hero-thumb {
             position: absolute;
             bottom: 10%;
@@ -183,14 +394,6 @@
             padding: 0.5rem;
             transform: rotate(5deg);
             box-shadow: 10px 10px 0 rgba(0,0,0,0.1);
-        }
-
-        .hero-thumb::before {
-            content: '';
-            display: block;
-            width: 100%;
-            height: 100%;
-            background: var(--light-gray);
         }
 
         /* Brand Marquee */
@@ -232,43 +435,9 @@
             100% { transform: translateX(-50%); }
         }
 
-        /* Street Shop Section */
-        .street-shop {
-            background: var(--charcoal);
-            color: var(--pure-white);
-            padding: 8rem 4rem;
-            text-align: center;
-        }
-
-        .street-shop h2 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            margin-bottom: 1.5rem;
-        }
-
-        .street-shop p {
-            font-size: 0.9rem;
-            color: var(--mid-gray);
-            max-width: 500px;
-            margin: 0 auto 2rem;
-            line-height: 1.8;
-        }
-
-        .street-tag {
-            display: inline-block;
-            padding: 0.6rem 1.5rem;
-            border: 1px solid var(--mid-gray);
-            font-size: 0.7rem;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-        }
-
-        /* Collection Section */
-        .collection {
-            padding: 6rem 4rem;
-            background: var(--pure-white);
+        /* Section Styles */
+        .section {
+            padding: 5rem 4rem;
         }
 
         .section-header {
@@ -278,18 +447,46 @@
             margin-bottom: 3rem;
         }
 
+        .section-title-box {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .section-number {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.7rem;
+            color: var(--mid-gray);
+            font-weight: 600;
+        }
+
         .section-title {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             font-weight: 700;
-            letter-spacing: 0.05em;
+            letter-spacing: -0.02em;
             text-transform: uppercase;
         }
 
+        .view-all {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--dark-gray);
+            text-decoration: none;
+            border-bottom: 1px solid var(--dark-gray);
+            padding-bottom: 0.2rem;
+            transition: all 0.3s;
+        }
+
+        .view-all:hover {
+            color: var(--black);
+        }
+
+        /* Product Grid */
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
         }
 
         .product-card {
@@ -300,6 +497,15 @@
 
         .product-card:hover {
             transform: translateY(-8px);
+        }
+
+        .product-card.bestseller {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        .product-card.bestseller .product-image {
+            aspect-ratio: 1;
         }
 
         .product-image {
@@ -322,6 +528,20 @@
             transform: scale(1.05);
         }
 
+        .bestseller-tag {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: var(--black);
+            color: white;
+            padding: 0.5rem 1rem;
+            font-size: 0.65rem;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            font-weight: 600;
+            z-index: 2;
+        }
+
         .product-tag {
             position: absolute;
             top: 1rem;
@@ -332,125 +552,83 @@
             padding: 0.4rem 0.8rem;
             background: var(--pure-white);
             border: 1px solid var(--dark-gray);
+            z-index: 2;
         }
 
         .product-info h3 {
-            font-size: 0.8rem;
+            font-size: 0.9rem;
             font-weight: 600;
             margin-bottom: 0.5rem;
             color: var(--dark-gray);
         }
 
         .product-info .price {
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             color: var(--mid-gray);
+            font-weight: 500;
         }
 
-        /* Featured Section */
-        .featured {
+        /* Dark Sections */
+        .dark-section {
+            background: var(--charcoal);
+            color: var(--pure-white);
+        }
+
+        .dark-section .section-title {
+            color: var(--pure-white);
+        }
+
+        .dark-section .view-all {
+            color: var(--mid-gray);
+            border-color: var(--mid-gray);
+        }
+
+        .dark-section .product-image {
+            background: var(--dark-gray);
+        }
+
+        .dark-section .product-image::before {
+            background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%);
+        }
+
+        .dark-section .product-tag {
+            background: var(--charcoal);
+            border-color: var(--mid-gray);
+            color: var(--pure-white);
+        }
+
+        /* Street Shop Section */
+        .street-shop {
             background: var(--charcoal);
             color: var(--pure-white);
             padding: 6rem 4rem;
+            text-align: center;
         }
 
-        .featured-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .featured-content h2 {
+        .street-shop h2 {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 2rem;
+            font-size: clamp(2rem, 5vw, 3.5rem);
             font-weight: 700;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
+            letter-spacing: -0.02em;
             margin-bottom: 1.5rem;
+            line-height: 1.1;
         }
 
-        .featured-content p {
-            font-size: 0.85rem;
+        .street-shop p {
+            font-size: 0.9rem;
             color: var(--mid-gray);
+            max-width: 500px;
+            margin: 0 auto 2rem;
             line-height: 1.8;
-            margin-bottom: 2rem;
-            max-width: 400px;
         }
 
-        .featured-btn {
+        .street-tag {
             display: inline-block;
-            padding: 1rem 2.5rem;
-            background: var(--pure-white);
-            color: var(--black);
-            text-decoration: none;
+            padding: 0.6rem 1.5rem;
+            border: 1px solid var(--mid-gray);
             font-size: 0.7rem;
-            font-weight: 600;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.15em;
             text-transform: uppercase;
-            border-radius: 30px;
-            transition: all 0.3s;
-        }
-
-        .featured-btn:hover {
-            background: var(--camel);
-            color: var(--pure-white);
-        }
-
-        .featured-image {
-            aspect-ratio: 1;
-            background: var(--off-white);
-            position: relative;
-        }
-
-        /* Sub Collection */
-        .sub-collection {
-            padding: 4rem;
-            background: var(--pure-white);
-        }
-
-        .sub-collection h3 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 1rem;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .sub-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-        }
-
-        .sub-card {
-            border: 1px solid var(--light-gray);
-            padding: 1.5rem;
-            text-align: center;
-            transition: all 0.3s;
-        }
-
-        .sub-card:hover {
-            border-color: var(--dark-gray);
-        }
-
-        .sub-image {
-            aspect-ratio: 1;
-            background: var(--off-white);
-            margin-bottom: 1rem;
-        }
-
-        .sub-card h4 {
-            font-size: 0.75rem;
-            font-weight: 600;
-            margin-bottom: 0.3rem;
-        }
-
-        .sub-card p {
-            font-size: 0.7rem;
             color: var(--mid-gray);
         }
 
@@ -520,6 +698,19 @@
             color: var(--mid-gray);
         }
 
+        /* Overlay for mobile menu */
+        .overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1500;
+            display: none;
+        }
+
+        .overlay.active {
+            display: block;
+        }
+
         /* Mobile */
         @media (max-width: 1024px) {
             .hero-container {
@@ -531,17 +722,26 @@
                 display: none;
             }
 
-            .product-grid,
-            .sub-grid {
+            .product-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
 
-            .featured-container {
-                grid-template-columns: 1fr;
+            .product-card.bestseller {
+                grid-column: span 2;
+                grid-row: span 1;
+            }
+
+            .section {
+                padding: 3rem 2rem;
             }
 
             .footer-grid {
                 grid-template-columns: 1fr 1fr;
+            }
+
+            .cart-sidebar {
+                width: 100%;
+                right: -100%;
             }
         }
 
@@ -554,42 +754,97 @@
                 display: none;
             }
 
-            .hero-container,
-            .collection,
-            .featured,
-            .sub-collection,
-            footer {
-                padding: 2rem 1.5rem;
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
             }
 
-            .product-grid,
-            .sub-grid {
-                grid-template-columns: 1fr;
+            .product-card.bestseller {
+                grid-column: span 2;
+            }
+
+            .section-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
             }
 
             .footer-grid {
                 grid-template-columns: 1fr;
-                gap: 2rem;
+            }
+
+            .search-box {
+                width: 90%;
+            }
+
+            .search-box input {
+                font-size: 1.2rem;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="searchOverlay">
+        <button class="search-close" onclick="closeSearch()">×</button>
+        <div class="search-box">
+            <input type="text" placeholder="Search products..." id="searchInput">
+        </div>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Your Bag</h3>
+            <button class="cart-close" onclick="closeCart()">×</button>
+        </div>
+        <div class="cart-items">
+            <p class="cart-empty">Your bag is empty</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total</span>
+                <span id="cartTotal">₹0</span>
+            </div>
+            <button class="checkout-btn">Checkout</button>
+        </div>
+    </div>
+
+    <!-- Profile Modal -->
+    <div class="profile-modal" id="profileModal">
+        <div class="profile-box">
+            <button class="profile-close" onclick="closeProfile()">×</button>
+            <h3>Sign In</h3>
+            <input type="email" placeholder="Email">
+            <input type="password" placeholder="Password">
+            <button>Sign In</button>
+        </div>
+    </div>
+
     <!-- Navigation -->
     <nav>
-        <div class="logo">Velôrte</div>
+        <div class="logo" onclick="window.scrollTo(0,0)">Velôrte</div>
         <ul class="nav-center">
-            <li><a href="#">Women</a></li>
-            <li><a href="#">Men</a></li>
-            <li><a href="#">Brands</a></li>
-            <li><a href="#">Collections</a></li>
-            <li><a href="#">Drop</a></li>
-            <li><a href="#">Sale</a></li>
+            <li><a href="#new-collections">New Collections</a></li>
+            <li><a href="#latest-drop">Latest Drop</a></li>
+            <li><a href="#streetwear">Streetwear</a></li>
+            <li><a href="#old-money">Old Money</a></li>
+            <li><a href="#gym-wear">Gym Wear</a></li>
+            <li><a href="#accessories">Accessories</a></li>
         </ul>
         <div class="nav-right">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M6 6 5 3H2"/></svg>
+            <button class="nav-btn" onclick="openSearch()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+            </button>
+            <button class="nav-btn" onclick="openProfile()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </button>
+            <button class="nav-btn" onclick="openCart()">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M6 6 5 3H2"/></svg>
+                <span class="cart-count" id="cartCount">0</span>
+            </button>
         </div>
     </nav>
 
@@ -597,7 +852,7 @@
     <section class="hero">
         <div class="hero-container">
             <div class="hero-content">
-                <span class="hero-tag">New Collection</span>
+                <span class="hero-tag" onclick="document.getElementById('new-collections').scrollIntoView({behavior: 'smooth'})">New Collection</span>
                 <h1 class="hero-title">
                     <span class="line-1">Wanna be</span>
                     <span class="line-2">different</span>
@@ -613,20 +868,18 @@
     <!-- Brand Marquee -->
     <section class="marquee-section">
         <div class="marquee-track">
-            <span class="marquee-item">Velôrte Originals</span>
-            <span class="marquee-item">Old Money</span>
+            <span class="marquee-item">New Collections</span>
+            <span class="marquee-item">Latest Drop</span>
             <span class="marquee-item">Streetwear</span>
-            <span class="marquee-item">Limited Drops</span>
-            <span class="marquee-item">No Restocks</span>
-            <span class="marquee-item">Heritage Craft</span>
-            <span class="marquee-item">Urban Luxury</span>
-            <span class="marquee-item">Velôrte Originals</span>
             <span class="marquee-item">Old Money</span>
+            <span class="marquee-item">Gym Wear</span>
+            <span class="marquee-item">Accessories</span>
+            <span class="marquee-item">New Collections</span>
+            <span class="marquee-item">Latest Drop</span>
             <span class="marquee-item">Streetwear</span>
-            <span class="marquee-item">Limited Drops</span>
-            <span class="marquee-item">No Restocks</span>
-            <span class="marquee-item">Heritage Craft</span>
-            <span class="marquee-item">Urban Luxury</span>
+            <span class="marquee-item">Old Money</span>
+            <span class="marquee-item">Gym Wear</span>
+            <span class="marquee-item">Accessories</span>
         </div>
     </section>
 
@@ -637,40 +890,44 @@
         <span class="street-tag">100% Legit</span>
     </section>
 
-    <!-- Collection Section -->
-    <section class="collection">
+    <!-- NEW COLLECTIONS SECTION -->
+    <section class="section" id="new-collections">
         <div class="section-header">
-            <h2 class="section-title">The Collection</h2>
+            <div class="section-title-box">
+                <span class="section-number">01</span>
+                <h2 class="section-title">New Collections</h2>
+            </div>
+            <a href="#" class="view-all">View All →</a>
         </div>
         <div class="product-grid">
-            <div class="product-card">
+            <div class="product-card bestseller" onclick="addToCart('Signature Hoodie', 4999)">
                 <div class="product-image">
-                    <span class="product-tag">New</span>
+                    <span class="bestseller-tag">Bestseller</span>
                 </div>
                 <div class="product-info">
-                    <h3>Signature Hoodie</h3>
+                    <h3>The Signature Hoodie</h3>
                     <p class="price">₹4,999</p>
                 </div>
             </div>
-            <div class="product-card">
+            <div class="product-card" onclick="addToCart('Camel Overcoat', 12999)">
                 <div class="product-image">
-                    <span class="product-tag">Heritage</span>
+                    <span class="product-tag">New</span>
                 </div>
                 <div class="product-info">
                     <h3>Camel Overcoat</h3>
                     <p class="price">₹12,999</p>
                 </div>
             </div>
-            <div class="product-card">
+            <div class="product-card" onclick="addToCart('Structured Cap', 2499)">
                 <div class="product-image">
-                    <span class="product-tag">Street</span>
+                    <span class="product-tag">Hot</span>
                 </div>
                 <div class="product-info">
                     <h3>Structured Cap</h3>
                     <p class="price">₹2,499</p>
                 </div>
             </div>
-            <div class="product-card">
+            <div class="product-card" onclick="addToCart('Heritage Tote', 8999)">
                 <div class="product-image">
                     <span class="product-tag">Limited</span>
                 </div>
@@ -679,57 +936,250 @@
                     <p class="price">₹8,999</p>
                 </div>
             </div>
-            <div class="product-card">
+        </div>
+    </section>
+
+    <!-- LATEST DROP SECTION -->
+    <section class="section dark-section" id="latest-drop">
+        <div class="section-header">
+            <div class="section-title-box">
+                <span class="section-number">02</span>
+                <h2 class="section-title">Latest Drop</h2>
+            </div>
+            <a href="#" class="view-all">View All →</a>
+        </div>
+        <div class="product-grid">
+            <div class="product-card bestseller" onclick="addToCart('Drop 01 Exclusive', 5999)">
                 <div class="product-image">
-                    <span class="product-tag">New</span>
+                    <span class="bestseller-tag">Bestseller</span>
                 </div>
                 <div class="product-info">
-                    <h3>Street Jacket</h3>
-                    <p class="price">₹7,999</p>
+                    <h3>Drop 01 Exclusive</h3>
+                    <p class="price">₹5,999</p>
                 </div>
             </div>
-            <div class="product-card">
+            <div class="product-card" onclick="addToCart('Velôrte Tee', 2999)">
                 <div class="product-image">
-                    <span class="product-tag">Drop 01</span>
+                    <span class="product-tag">New</span>
                 </div>
                 <div class="product-info">
                     <h3>Velôrte Tee</h3>
                     <p class="price">₹2,999</p>
                 </div>
             </div>
+            <div class="product-card" onclick="addToCart('Street Jacket', 7999)">
+                <div class="product-image">
+                    <span class="product-tag">Limited</span>
+                </div>
+                <div class="product-info">
+                    <h3>Street Jacket</h3>
+                    <p class="price">₹7,999</p>
+                </div>
+            </div>
+            <div class="product-card" onclick="addToCart('Crewneck Sweat', 3499)">
+                <div class="product-image">
+                    <span class="product-tag">New</span>
+                </div>
+                <div class="product-info">
+                    <h3>Crewneck Sweat</h3>
+                    <p class="price">₹3,499</p>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Featured Section -->
-    <section class="featured">
-        <div class="featured-container">
-            <div class="featured-content">
-                <h2>Drop 01</h2>
-                <p>The best of this season. Premium essentials crafted with intention. Every piece tells a story of heritage meeting the streets.</p>
-                <a href="#" class="featured-btn">Shop Now</a>
+    <!-- STREETWEAR SECTION -->
+    <section class="section" id="streetwear">
+        <div class="section-header">
+            <div class="section-title-box">
+                <span class="section-number">03</span>
+                <h2 class="section-title">Streetwear</h2>
             </div>
-            <div class="featured-image"></div>
+            <a href="#" class="view-all">View All →</a>
+        </div>
+        <div class="product-grid">
+            <div class="product-card bestseller" onclick="addToCart('Oversized Hoodie', 5499)">
+                <div class="product-image">
+                    <span class="bestseller-tag">Bestseller</span>
+                </div>
+                <div class="product-info">
+                    <h3>Oversized Hoodie</h3>
+                    <p class="price">₹5,499</p>
+                </div>
+            </div>
+            <div class="product-card" onclick="addToCart('Cargo Pants', 4499)">
+                <div class="product-image">
+                    <span class="product-tag">Hot</span>
+                </div>
+                <div class="product-info">
+                    <h3>Cargo Pants</h3>
+                    <p class="price">₹4,499</p>
+                </div>
+            </div>
+            <div class="product-card" onclick="addToCart('Graphic Tee', 2499)">
+                <div class="product-image">
+                    <span class="product-tag">New</span>
+                </div>
+                <div class="product-info">
+                    <h3>Graphic Tee</h3>
+                    <p class="price">₹2,499</p>
+                </div>
+            </div>
+            <div class="product-card" onclick="addToCart('Street Sneakers', 6999)">
+                <div class="product-image">
+                    <span class="product-tag">Limited</span>
+                </div>
+                <div class="product-info">
+                    <h3>Street Sneakers</h3>
+                    <p class="price">₹6,999</p>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Sub Collection -->
-    <section class="sub-collection">
-        <h3>Collection Drop 01</h3>
-        <div class="sub-grid">
-            <div class="sub-card">
-                <div class="sub-image"></div>
-                <h4>Signature Hoodie</h4>
-                <p>₹4,999</p>
+    <!-- OLD MONEY SECTION -->
+    <section class="section dark-section" id="old-money">
+        <div class="section-header">
+            <div class="section-title-box">
+                <span class="section-number">04</span>
+                <h2 class="section-title">Old Money</h2>
             </div>
-            <div class="sub-card">
-                <div class="sub-image"></div>
-                <h4>Crewneck Sweat</h4>
-                <p>₹3,499</p>
+            <a href="#" class="view-all">View All →</a>
+        </div>
+        <div class="product-grid">
+            <div class="product-card bestseller" onclick="addToCart('Wool Overcoat', 15999)">
+                <div class="product-image">
+                    <span class="bestseller-tag">Bestseller</span>
+                </div>
+                <div class="product-info">
+                    <h3>Wool Overcoat</h3>
+                    <p class="price">₹15,999</p>
+                </div>
             </div>
-            <div class="sub-card">
-                <div class="sub-image"></div>
-                <h4>Street Shorts</h4>
-                <p>₹2,999</p>
+            <div class="product-card" onclick="addToCart('Cashmere Sweater', 8999)">
+                <div class="product-image">
+                    <span class="product-tag">Heritage</span>
+                </div>
+                <div class="product-info">
+                    <h3>Cashmere Sweater</h3>
+                    <p class="price">₹8,999</p>
+                </div>
+            </div>
+            <div class="product-card" onclick="addToCart('Tailored Trousers', 6499)">
+                <div class="product-image">
+                    <span class="product-tag">Classic</span>
+                </div>
+                <div class="product-info">
+                    <h3>Tailored Trousers</h3>
+                    <p class="price">₹6,499</p>
+                </div>
+            </div>
+            <div class="product-card" onclick="addToCart('Leather Loafers', 7999)">
+                <div class="product-image">
+                    <span class="product-tag">Premium</span>
+                </div>
+                <div class="product-info">
+                    <h3>Leather Loafers</h3>
+                    <p class="price">₹7,999</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GYM WEAR SECTION -->
+    <section class="section" id="gym-wear">
+        <div class="section-header">
+            <div class="section-title-box">
+                <span class="section-number">05</span>
+                <h2 class="section-title">Gym Wear</h2>
+            </div>
+            <a href="#" class="view-all">View All →</a>
+        </div>
+        <div class="product-grid">
+            <div class="product-card bestseller" onclick="addToCart('Performance Set', 4999)">
+                <div class="product-image">
+                    <span class="bestseller-tag">Bestseller</span>
+                </div>
+                <div class="product-info">
+                    <h3>Performance Set</h3>
+                    <p class="price">₹4,999</p>
+                </div>
+            </div>
+            <div class="product-card" onclick="addToCart('Compression Tee', 1999)">
+                <div class="product-image">
+                    <span class="product-tag">New</span>
+                </div>
+                <div class="product-info">
+                    <h3>Compression Tee</h3>
+                    <p class="price">₹1,999</p>
+                </div>
+            </div>
+            <div class="product-card" onclick="addToCart('Training Shorts', 2499)">
+                <div class="product-image">
+                    <span class="product-tag">Hot</span>
+                </div>
+                <div class="product-info">
+                    <h3>Training Shorts</h3>
+                    <p class="price">₹2,499</p>
+                </div>
+            </div>
+            <div class="product-card" onclick="addToCart('Gym Bag', 3499)">
+                <div class="product-image">
+                    <span class="product-tag">Essential</span>
+                </div>
+                <div class="product-info">
+                    <h3>Gym Bag</h3>
+                    <p class="price">₹3,499</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ACCESSORIES SECTION -->
+    <section class="section dark-section" id="accessories">
+        <div class="section-header">
+            <div class="section-title-box">
+                <span class="section-number">06</span>
+                <h2 class="section-title">Accessories</h2>
+            </div>
+            <a href="#" class="view-all">View All →</a>
+        </div>
+        <div class="product-grid">
+            <div class="product-card bestseller" onclick="addToCart('Leather Belt', 2999)">
+                <div class="product-image">
+                    <span class="bestseller-tag">Bestseller</span>
+                </div>
+                <div class="product-info">
+                    <h3>Leather Belt</h3>
+                    <p class="price">₹2,999</p>
+                </div>
+            </div>
+            <div class="product-card" onclick="addToCart('Designer Shades', 5499)">
+                <div class="product-image">
+                    <span class="product-tag">New</span>
+                </div>
+                <div class="product-info">
+                    <h3>Designer Shades</h3>
+                    <p class="price">₹5,499</p>
+                </div>
+            </div>
+            <div class="product-card" onclick="addToCart('Silk Scarf', 1999)">
+                <div class="product-image">
+                    <span class="product-tag">Luxury</span>
+                </div>
+                <div class="product-info">
+                    <h3>Silk Scarf</h3>
+                    <p class="price">₹1,999</p>
+                </div>
+            </div>
+            <div class="product-card" onclick="addToCart('Watch Collection', 12999)">
+                <div class="product-image">
+                    <span class="product-tag">Limited</span>
+                </div>
+                <div class="product-info">
+                    <h3>Watch Collection</h3>
+                    <p class="price">₹12,999</p>
+                </div>
             </div>
         </div>
     </section>
@@ -739,24 +1189,24 @@
         <div class="footer-grid">
             <div class="footer-brand">
                 <h3>Velôrte</h3>
-                <p>Wanna be different, wear Velôrte. Where heritage meets the streets.</p>
+                <p>Wanna be different, wear Velôrte. Where heritage meets the streets. Crafted for those who lead, not follow.</p>
             </div>
             <div class="footer-col">
                 <h4>Shop</h4>
                 <ul>
-                    <li><a href="#">New Arrivals</a></li>
-                    <li><a href="#">Old Money</a></li>
-                    <li><a href="#">Streetwear</a></li>
-                    <li><a href="#">Accessories</a></li>
+                    <li><a href="#new-collections">New Collections</a></li>
+                    <li><a href="#latest-drop">Latest Drop</a></li>
+                    <li><a href="#streetwear">Streetwear</a></li>
+                    <li><a href="#old-money">Old Money</a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>Brand</h4>
+                <h4>Categories</h4>
                 <ul>
-                    <li><a href="#">Heritage</a></li>
-                    <li><a href="#">Journal</a></li>
-                    <li><a href="#">Stockists</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="#gym-wear">Gym Wear</a></li>
+                    <li><a href="#accessories">Accessories</a></li>
+                    <li><a href="#">Sale</a></li>
+                    <li><a href="#">Lookbook</a></li>
                 </ul>
             </div>
             <div class="footer-col">
@@ -773,5 +1223,86 @@
             <span>No restocks. Made with intention.</span>
         </div>
     </footer>
+
+    <script>
+        // Cart functionality
+        let cart = [];
+        let cartTotal = 0;
+
+        function openCart() {
+            document.getElementById('cartSidebar').classList.add('active');
+            document.getElementById('overlay').classList.add('active');
+        }
+
+        function closeCart() {
+            document.getElementById('cartSidebar').classList.remove('active');
+            document.getElementById('overlay').classList.remove('active');
+        }
+
+        function addToCart(name, price) {
+            cart.push({ name, price });
+            cartTotal += price;
+            updateCart();
+            openCart();
+        }
+
+        function updateCart() {
+            document.getElementById('cartCount').textContent = cart.length;
+            document.getElementById('cartTotal').textContent = '₹' + cartTotal.toLocaleString();
+
+            const cartItems = document.querySelector('.cart-items');
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p class="cart-empty">Your bag is empty</p>';
+            } else {
+                cartItems.innerHTML = cart.map(item => `
+                    <div style="display: flex; justify-content: space-between; padding: 1rem 0; border-bottom: 1px solid #eee;">
+                        <span>${item.name}</span>
+                        <span>₹${item.price.toLocaleString()}</span>
+                    </div>
+                `).join('');
+            }
+        }
+
+        // Search functionality
+        function openSearch() {
+            document.getElementById('searchOverlay').classList.add('active');
+            document.getElementById('searchInput').focus();
+        }
+
+        function closeSearch() {
+            document.getElementById('searchOverlay').classList.remove('active');
+        }
+
+        // Profile functionality
+        function openProfile() {
+            document.getElementById('profileModal').classList.add('active');
+        }
+
+        function closeProfile() {
+            document.getElementById('profileModal').classList.remove('active');
+        }
+
+        // Close on overlay click
+        document.getElementById('overlay').addEventListener('click', function() {
+            closeCart();
+        });
+
+        // Close on escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeCart();
+                closeSearch();
+                closeProfile();
+            }
+        });
+
+        // Search input handler
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                alert('Searching for: ' + this.value);
+                closeSearch();
+            }
+        });
+    </script>
 </body>
 </html>
