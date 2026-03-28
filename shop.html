@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Shop | VELÔRTE</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <link rel="stylesheet" href="style.css?v=2">
+</head>
+<body>
+
+  <header>
+    <nav>
+      <h1>VELÔRTE</h1>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="#" id="signin-btn" class="signin-link">Sign In</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div id="signin-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" id="close-modal">&times;</span>
+      <h2>Sign In</h2>
+      <form id="login-form">
+        <label>Email</label>
+        <input type="email" id="email" required>
+        <label>Password</label>
+        <input type="password" id="password" required>
+        <button type="submit" class="btn-submit">Sign In</button>
+      </form>
+    </div>
+  </div>
+
+  <section class="shop-header">
+    <h2>All Products</h2>
+    <p>Click a filter to sort by collection</p>
+  </section>
+
+  <!-- WORKING FILTER BUTTONS -->
+  <div class="shop-filters">
+    <button class="filter-btn active" onclick="filterProducts('all')">All</button>
+    <button class="filter-btn" onclick="filterProducts('latest')">Latest Drop</button>
+    <button class="filter-btn" onclick="filterProducts('new')">New Collections</button>
+    <button class="filter-btn" onclick="filterProducts('streetwear')">Streetwear</button>
+    <button class="filter-btn" onclick="filterProducts('oldmoney')">Old Money</button>
+    <button class="filter-btn" onclick="filterProducts('gym')">Gym Wear</button>
+    <button class="filter-btn" onclick="filterProducts('accessories')">Accessories</button>
+  </div>
+
+  <div class="shop-grid" id="shop-products"></div>
+
+  <div class="no-results" id="no-results" style="display: none;">
+    <p>No products found.</p>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <h3>VELÔRTE</h3>
+      <div class="social-links">
+        <a href="https://www.instagram.com/velorteclothing.in?igsh=MXNtbHY0OXU2MHV0OQ==" target="_blank" class="social-link">Instagram</a>
+        <a href="https://pin.it/4Om5RYKiP" target="_blank" class="social-link">Pinterest</a>
+      </div>
+      <p class="copyright">&copy; 2026 Velôrte</p>
+    </div>
+  </footer>
+
+  <script src="script.js?v=2"></script>
+  <script>
+    // Same products as index
+    const allProducts = [
+      {id: 1, name: "Signature Hoodie", price: "$149", image: "https://via.placeholder.com/300x400/1a1a1a/fff?text=Hoodie", tags: ["latest", "streetwear"]},
+      {id: 2, name: "Varsity Jacket", price: "$299", image: "https://via.placeholder.com/300x400/2d2d2d/fff?text=Jacket", tags: ["latest", "oldmoney"]},
+      {id: 3, name: "Essential Tee", price: "$89", image: "https://via.placeholder.com/300x400/1a1a1a/fff?text=Tee", tags: ["streetwear"]},
+      {id: 4, name: "Old Money Trousers", price: "$179", image: "https://via.placeholder.com/300x400/2d2d2d/fff?text=Trousers", tags: ["oldmoney"]},
+      {id: 5, name: "Velorte Cap", price: "$59", image: "https://via.placeholder.com/300x400/1a1a1a/fff?text=Cap", tags: ["accessories"]},
+      {id: 6, name: "Sweatpants", price: "$129", image: "https://via.placeholder.com/300x400/2d2d2d/fff?text=Sweatpants", tags: ["gym", "streetwear"]},
+      {id: 7, name: "Beanie", price: "$49", image: "https://via.placeholder.com/300x400/1a1a1a/fff?text=Beanie", tags: ["accessories", "latest"]},
+      {id: 8, name: "Oversized Tee", price: "$79", image: "https://via.placeholder.com/300x400/2d2d2d/fff?text=Oversized", tags: ["streetwear", "new"]},
+      {id: 9, name: "Gym Tank", price: "$69", image: "https://via.placeholder.com/300x400/1a1a1a/fff?text=Tank", tags: ["gym", "latest"]},
+      {id: 10, name: "Wool Coat", price: "$399", image: "https://via.placeholder.com/300x400/2d2d2d/fff?text=Coat", tags: ["oldmoney", "new"]},
+      {id: 11, name: "Leather Belt", price: "$89", image: "https://via.placeholder.com/300x400/1a1a1a/fff?text=Belt", tags: ["accessories", "oldmoney"]},
+      {id: 12, name: "Leggings", price: "$99", image: "https://via.placeholder.com/300x400/2d2d2d/fff?text=Leggings", tags: ["gym"]}
+    ];
+
+    function displayProducts(filter) {
+      const container = document.getElementById('shop-products');
+      const noResults = document.getElementById('no-results');
+      
+      // Update active button
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.textContent.toLowerCase().includes(filter) || (filter === 'all' && btn.textContent === 'All')) {
+          btn.classList.add('active');
+        }
+      });
+      
+      // Filter products
+      const filtered = filter === 'all' 
+        ? allProducts 
+        : allProducts.filter(p => p.tags.includes(filter));
+      
+      if (filtered.length === 0) {
+        container.innerHTML = '';
+        noResults.style.display = 'block';
+      } else {
+        noResults.style.display = 'none';
+        container.innerHTML = filtered.map(p => `
+          <div class="product-card">
+            <a href="product-detail.html?id=${p.id}" class="product-link">
+              <img src="${p.image}" alt="${p.name}">
+              <h3>${p.name}</h3>
+              <p class="price">${p.price}</p>
+            </a>
+          </div>
+        `).join('');
+      }
+    }
+
+    // Check URL on load
+    const urlParams = new URLSearchParams(window.location.search);
+    const filterParam = urlParams.get('filter');
+    
+    if (filterParam && ['latest', 'new', 'streetwear', 'oldmoney', 'gym', 'accessories'].includes(filterParam)) {
+      displayProducts(filterParam);
+    } else {
+      displayProducts('all');
+    }
+  </script>
+</body>
+</html>
