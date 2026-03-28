@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,7 +41,7 @@
     </div>
   </div>
 
-  <!-- NEW HERO: Full-bleed immersive design with animated elements -->
+  <!-- HERO -->
   <section class="hero-new">
     <div class="hero-bg"></div>
     <div class="hero-content">
@@ -65,79 +66,86 @@
           <span class="stat-label">Limited Drops</span>
         </div>
       </div>
-      <a href="shop.html" class="btn-hero">Explore Collection</a>
+      <a href="#latest-drop" class="btn-hero">Shop Latest Drop</a>
     </div>
     <div class="hero-scroll">Scroll</div>
   </section>
 
-  <!-- CATEGORY SECTIONS -->
-  <section class="categories-section">
-    <h2 class="section-title">Shop by Category</h2>
-    <div class="categories-grid">
-      <a href="shop.html?category=hoodies" class="category-card large">
-        <div class="category-image" style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);">
-          <span class="category-icon">🏴</span>
-        </div>
-        <div class="category-info">
-          <h3>Hoodies</h3>
-          <p>Signature heavyweight essentials</p>
-          <span class="category-count">4 Products</span>
-        </div>
-      </a>
-      
-      <a href="shop.html?category=tees" class="category-card">
-        <div class="category-image" style="background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);">
-          <span class="category-icon">👕</span>
-        </div>
-        <div class="category-info">
-          <h3>Tees</h3>
-          <p>Organic cotton basics</p>
-          <span class="category-count">2 Products</span>
-        </div>
-      </a>
-      
-      <a href="shop.html?category=jackets" class="category-card">
-        <div class="category-image" style="background: linear-gradient(135deg, #1a1a1a 0%, #3d3d3d 100%);">
-          <span class="category-icon">🧥</span>
-        </div>
-        <div class="category-info">
-          <h3>Jackets</h3>
-          <p>Limited outerwear</p>
-          <span class="category-count">1 Product</span>
-        </div>
-      </a>
-      
-      <a href="shop.html?category=bottoms" class="category-card">
-        <div class="category-image" style="background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);">
-          <span class="category-icon">👖</span>
-        </div>
-        <div class="category-info">
-          <h3>Bottoms</h3>
-          <p>Tailored & relaxed fits</p>
-          <span class="category-count">2 Products</span>
-        </div>
-      </a>
-      
-      <a href="shop.html?category=accessories" class="category-card">
-        <div class="category-image" style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);">
-          <span class="category-icon">🧢</span>
-        </div>
-        <div class="category-info">
-          <h3>Accessories</h3>
-          <p>Finishing touches</p>
-          <span class="category-count">2 Products</span>
-        </div>
-      </a>
+  <!-- LATEST DROP SECTION -->
+  <section id="latest-drop" class="collection-section">
+    <div class="section-header">
+      <span class="section-tag">Just Arrived</span>
+      <h2 class="section-title">Latest Drop</h2>
+      <p class="section-subtitle">Fresh releases, limited quantities</p>
+    </div>
+    <div class="product-grid" id="latest-products">
+      <!-- Latest products loaded by JS -->
+    </div>
+    <a href="shop.html?category=latest" class="btn">View All Latest</a>
+  </section>
+
+  <!-- NEW COLLECTIONS SECTION -->
+  <section id="new-collections" class="collection-section alt-bg">
+    <div class="section-header">
+      <span class="section-tag">New Season</span>
+      <h2 class="section-title">New Collections</h2>
+      <p class="section-subtitle">Curated sets for the modern wardrobe</p>
+    </div>
+    <div class="collection-grid" id="new-collections-grid">
+      <!-- Collection cards loaded by JS -->
     </div>
   </section>
 
-  <!-- FEATURED PRODUCTS -->
-  <section id="collection">
-    <h2 class="section-title">New Arrivals</h2>
-    <div class="product-grid" id="featured-products">
-      <!-- Products loaded by JavaScript -->
+  <!-- STREETWEAR SECTION -->
+  <section id="streetwear" class="collection-section">
+    <div class="section-header">
+      <span class="section-tag">Urban Essentials</span>
+      <h2 class="section-title">Streetwear</h2>
+      <p class="section-subtitle">Bold silhouettes for the city</p>
     </div>
-    <a href="shop.html" class="btn">View All Products</a>
+    <div class="product-grid" id="streetwear-products">
+      <!-- Streetwear products loaded by JS -->
+    </div>
+    <a href="shop.html?category=streetwear" class="btn">Shop Streetwear</a>
+  </section>
+
+  <!-- OLD MONEY SECTION -->
+  <section id="old-money" class="collection-section alt-bg">
+    <div class="section-header">
+      <span class="section-tag">Timeless Luxury</span>
+      <h2 class="section-title">Old Money</h2>
+      <p class="section-subtitle">Classic elegance, modern edge</p>
+    </div>
+    <div class="product-grid" id="oldmoney-products">
+      <!-- Old Money products loaded by JS -->
+    </div>
+    <a href="shop.html?category=oldmoney" class="btn">Shop Old Money</a>
+  </section>
+
+  <!-- GYM WEAR SECTION -->
+  <section id="gym-wear" class="collection-section">
+    <div class="section-header">
+      <span class="section-tag">Performance</span>
+      <h2 class="section-title">Gym Wear</h2>
+      <p class="section-subtitle">Train in luxury</p>
+    </div>
+    <div class="product-grid" id="gym-products">
+      <!-- Gym wear products loaded by JS -->
+    </div>
+    <a href="shop.html?category=gym" class="btn">Shop Gym Wear</a>
+  </section>
+
+  <!-- ACCESSORIES SECTION -->
+  <section id="accessories" class="collection-section alt-bg">
+    <div class="section-header">
+      <span class="section-tag">Finishing Touches</span>
+      <h2 class="section-title">Accessories</h2>
+      <p class="section-subtitle">Details that define the look</p>
+    </div>
+    <div class="product-grid" id="accessories-products">
+      <!-- Accessories loaded by JS -->
+    </div>
+    <a href="shop.html?category=accessories" class="btn">Shop Accessories</a>
   </section>
 
   <!-- BRAND VALUES -->
@@ -189,24 +197,82 @@
 
   <script src="script.js"></script>
   <script>
-    // Load featured products on homepage
-    const featuredProducts = [1, 2, 3, 4];
-    const productContainer = document.getElementById('featured-products');
-    
-    featuredProducts.forEach(id => {
-      const product = getProductData(id);
-      if (product) {
-        productContainer.innerHTML += `
-          <div class="product-card" data-category="${product.category}">
-            <a href="product-detail.html?id=${id}" class="product-link">
-              <img src="${product.image}" alt="${product.name}">
-              <h3>${product.name}</h3>
-              <p class="price">${product.price}</p>
-            </a>
+    // Product database with collection tags
+    const allProducts = {
+      1: { id: 1, name: "Signature Hoodie", price: "$149.00", category: "streetwear", collections: ["latest", "streetwear"], image: "https://via.placeholder.com/300x400/1a1a1a/ffffff?text=Signature+Hoodie" },
+      2: { id: 2, name: "Street Essential Tee", price: "$89.00", category: "streetwear", collections: ["streetwear"], image: "https://via.placeholder.com/300x400/2d2d2d/ffffff?text=Street+Essential+Tee" },
+      3: { id: 3, name: "Luxury Varsity Jacket", price: "$299.00", category: "oldmoney", collections: ["latest", "oldmoney"], image: "https://via.placeholder.com/300x400/1a1a1a/ffffff?text=Luxury+Varsity+Jacket" },
+      4: { id: 4, name: "Old Money Trousers", price: "$179.00", category: "oldmoney", collections: ["oldmoney"], image: "https://via.placeholder.com/300x400/2d2d2d/ffffff?text=Old+Money+Trousers" },
+      5: { id: 5, name: "Velorte Cap", price: "$59.00", category: "accessories", collections: ["accessories"], image: "https://via.placeholder.com/300x400/1a1a1a/ffffff?text=Velorte+Cap" },
+      6: { id: 6, name: "Essential Sweatpants", price: "$129.00", category: "gym", collections: ["gym", "streetwear"], image: "https://via.placeholder.com/300x400/2d2d2d/ffffff?text=Essential+Sweatpants" },
+      7: { id: 7, name: "Premium Beanie", price: "$49.00", category: "accessories", collections: ["accessories", "latest"], image: "https://via.placeholder.com/300x400/1a1a1a/ffffff?text=Premium+Beanie" },
+      8: { id: 8, name: "Oversized Tee", price: "$79.00", category: "streetwear", collections: ["streetwear", "new"], image: "https://via.placeholder.com/300x400/2d2d2d/ffffff?text=Oversized+Tee" },
+      9: { id: 9, name: "Performance Tank", price: "$69.00", category: "gym", collections: ["gym", "latest"], image: "https://via.placeholder.com/300x400/1a1a1a/ffffff?text=Performance+Tank" },
+      10: { id: 10, name: "Wool Overcoat", price: "$399.00", category: "oldmoney", collections: ["oldmoney", "new"], image: "https://via.placeholder.com/300x400/2d2d2d/ffffff?text=Wool+Overcoat" },
+      11: { id: 11, name: "Leather Belt", price: "$89.00", category: "accessories", collections: ["accessories", "oldmoney"], image: "https://via.placeholder.com/300x400/1a1a1a/ffffff?text=Leather+Belt" },
+      12: { id: 12, name: "Compression Leggings", price: "$99.00", category: "gym", collections: ["gym"], image: "https://via.placeholder.com/300x400/2d2d2d/ffffff?text=Compression+Leggings" }
+    };
+
+    // Helper to create product card HTML
+    function createProductCard(product) {
+      return `
+        <div class="product-card">
+          <a href="product-detail.html?id=${product.id}" class="product-link">
+            <img src="${product.image}" alt="${product.name}">
+            <h3>${product.name}</h3>
+            <p class="price">${product.price}</p>
+          </a>
+        </div>
+      `;
+    }
+
+    // Load products by collection
+    function loadProductsByCollection(collectionName, containerId, limit = 4) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+      
+      const filtered = Object.values(allProducts).filter(p => 
+        p.collections.includes(collectionName)
+      ).slice(0, limit);
+      
+      container.innerHTML = filtered.map(createProductCard).join('');
+    }
+
+    // Load Latest Drop (products with "latest" tag, max 4)
+    loadProductsByCollection('latest', 'latest-products', 4);
+
+    // Load New Collections (products with "new" tag)
+    loadProductsByCollection('new', 'new-collections-grid', 3);
+
+    // Load Streetwear
+    loadProductsByCollection('streetwear', 'streetwear-products', 4);
+
+    // Load Old Money
+    loadProductsByCollection('oldmoney', 'oldmoney-products', 4);
+
+    // Load Gym Wear
+    loadProductsByCollection('gym', 'gym-products', 4);
+
+    // Load Accessories
+    loadProductsByCollection('accessories', 'accessories-products', 4);
+
+    // New Collections special layout
+    const newCollectionsContainer = document.getElementById('new-collections-grid');
+    if (newCollectionsContainer) {
+      const newProducts = Object.values(allProducts).filter(p => p.collections.includes('new')).slice(0, 3);
+      newCollectionsContainer.innerHTML = newProducts.map((p, i) => `
+        <a href="product-detail.html?id=${p.id}" class="collection-card ${i === 0 ? 'large' : ''}">
+          <div class="collection-image" style="background: linear-gradient(135deg, #${i % 2 === 0 ? '1a1a1a' : '2d2d2d'} 0%, #${i % 2 === 0 ? '2d2d2d' : '1a1a1a'} 100%);">
+            <img src="${p.image}" alt="${p.name}" style="width: 100%; height: 100%; object-fit: cover; opacity: 0.8;">
           </div>
-        `;
-      }
-    });
+          <div class="collection-info">
+            <h3>${p.name}</h3>
+            <p>${p.price}</p>
+            <span class="collection-tag">New Arrival</span>
+          </div>
+        </a>
+      `).join('');
+    }
   </script>
 </body>
 </html>
