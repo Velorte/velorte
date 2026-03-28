@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>About | VELÔRTE</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .about-hero {
+      padding-top: 120px;
+      text-align: center;
+      padding-bottom: 4rem;
+    }
+    
+    .about-hero h2 {
+      font-size: 3rem;
+      letter-spacing: 6px;
+      margin-bottom: 1rem;
+    }
+    
+    .about-hero p {
+      color: #888;
+      font-size: 1.2rem;
+    }
+    
+    .about-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+    }
+    
+    .about-content h3 {
+      font-size: 1.5rem;
+      margin: 2rem 0 1rem;
+      letter-spacing: 2px;
+    }
+    
+    .about-content p {
+      color: #aaa;
+      line-height: 1.8;
+      margin-bottom: 1.5rem;
+    }
+    
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 2rem;
+      margin: 3rem 0;
+    }
+    
+    .value-card {
+      text-align: center;
+      padding: 2rem;
+      background: rgba(255, 255, 255, 0.03);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .value-card h4 {
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+      letter-spacing: 1px;
+    }
+    
+    .value-card p {
+      color: #666;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <h1>VELÔRTE</h1>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+        <li><a href="#" id="signin-btn" class="signin-link">Sign In</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div id="signin-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" id="close-modal">&times;</span>
+      <h2>Sign In</h2>
+      <form id="login-form">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="Enter your email" required>
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Enter your password" required>
+        <button type="submit" class="btn-submit">Sign In</button>
+      </form>
+    </div>
+  </div>
+
+  <section class="about-hero">
+    <h2>Our Story</h2>
+    <p>Luxury streetwear born from contrast</p>
+  </section>
+
+  <div class="about-content">
+    <h3>The Beginning</h3>
+    <p>Velôrte was founded in 2024 with a singular vision: to bridge the gap between old-world luxury craftsmanship and contemporary street culture. We believe that true style knows no boundaries—it moves effortlessly between boardrooms and street corners, between tradition and rebellion.</p>
+
+    <h3>Our Philosophy</h3>
+    <p>Every piece in our collection is designed for those who refuse to be categorized. The entrepreneurs who think different. The artists who push boundaries. The individuals who understand that luxury isn't about logos—it's about intention, quality, and the confidence to move through the world on your own terms.</p>
+
+    <div class="values-grid">
+      <div class="value-card">
+        <h4>Quality</h4>
+        <p>Premium materials sourced from the finest mills in Italy and Japan</p>
+      </div>
+      <div class="value-card">
+        <h4>Craft</h4>
+        <p>Each piece undergoes rigorous quality control and finishing</p>
+      </div>
+      <div class="value-card">
+        <h4>Culture</h4>
+        <p>Designed by creatives, for creatives who shape tomorrow</p>
+      </div>
+    </div>
+
+    <h3>Sustainability</h3>
+    <p>We are committed to responsible production. Our manufacturing partners are carefully selected for their ethical practices, and we prioritize deadstock fabrics and recycled materials whenever possible. Luxury should never come at the cost of our planet.</p>
+
+    <h3>Join the Movement</h3>
+    <p>Velôrte is more than clothing—it's a community of individuals who move different. Welcome to the new luxury.</p>
+    
+    <a href="shop.html" class="btn" style="margin-top: 2rem;">Shop the Collection</a>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <h3>VELÔRTE</h3>
+      <p>Luxury streetwear for the modern era</p>
+      <div class="social-links">
+        <a href="https://instagram.com/velorte" target="_blank" class="social-link">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+          </svg>
+          <span>@velorte</span>
+        </a>
+        <a href="https://pinterest.com/velorte" target="_blank" class="social-link">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M8 12c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4"></path>
+          </svg>
+          <span>@velorte</span>
+        </a>
+      </div>
+      <p class="copyright">&copy; 2024 Velôrte. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
