@@ -2,57 +2,117 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>VELÔRTE</title>
+  <title>VELÔRTE | Luxury Streetwear</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- CSS (FIXED PATH) -->
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-  <!-- NAVBAR -->
   <header>
     <nav>
       <h1>VELÔRTE</h1>
-
       <ul>
-        <!-- FIXED: removed "/" -->
         <li><a href="index.html">Home</a></li>
         <li><a href="shop.html">Shop</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="contact.html">Contact</a></li>
+        <li><a href="#" id="signin-btn" class="signin-link">Sign In</a></li>
       </ul>
     </nav>
   </header>
 
-  <!-- HERO SECTION -->
+  <div id="signin-modal" class="modal">
+    <div class="modal-content">
+      <span class="close-btn" id="close-modal">&times;</span>
+      <h2>Sign In</h2>
+      <form id="login-form">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="Enter your email" required>
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="Enter your password" required>
+        <button type="submit" class="btn-submit">Sign In</button>
+        <label class="remember-me"><input type="checkbox"> Remember me</label>
+      </form>
+      <div class="modal-footer">
+        <a href="#" class="forgot-password">Forgot password?</a>
+        <p>Don't have an account? <a href="#" id="signup-link">Sign up</a></p>
+      </div>
+    </div>
+  </div>
+
   <section class="hero">
     <h2>Luxury Meets Street</h2>
     <p>Old Money × Modern Edge</p>
-
-    <!-- FIXED BUTTON -->
     <a href="shop.html" class="btn">Shop Now</a>
   </section>
 
-  <!-- COLLECTION SECTION -->
   <section id="collection">
     <h2>Our Collection</h2>
-
-    <!-- FIXED BUTTON -->
+    <div class="product-grid">
+      <div class="product-card">
+        <a href="product-detail.html?id=1" class="product-link">
+          <img src="https://via.placeholder.com/300x400/1a1a1a/ffffff?text=Velorte+Signature+Hoodie" alt="Signature Hoodie">
+          <h3>Signature Hoodie</h3>
+          <p class="price">$149.00</p>
+        </a>
+      </div>
+      <div class="product-card">
+        <a href="product-detail.html?id=2" class="product-link">
+          <img src="https://via.placeholder.com/300x400/2d2d2d/ffffff?text=Street+Essential+Tee" alt="Street Essential Tee">
+          <h3>Street Essential Tee</h3>
+          <p class="price">$89.00</p>
+        </a>
+      </div>
+      <div class="product-card">
+        <a href="product-detail.html?id=3" class="product-link">
+          <img src="https://via.placeholder.com/300x400/1a1a1a/ffffff?text=Luxury+Varsity+Jacket" alt="Luxury Varsity Jacket">
+          <h3>Luxury Varsity Jacket</h3>
+          <p class="price">$299.00</p>
+        </a>
+      </div>
+      <div class="product-card">
+        <a href="product-detail.html?id=4" class="product-link">
+          <img src="https://via.placeholder.com/300x400/2d2d2d/ffffff?text=Old+Money+Trousers" alt="Old Money Trousers">
+          <h3>Old Money Trousers</h3>
+          <p class="price">$179.00</p>
+        </a>
+      </div>
+    </div>
     <a href="shop.html" class="btn">Explore Collection</a>
   </section>
 
-  <!-- ABOUT PREVIEW -->
-  <section>
+  <section class="about-preview">
     <h2>About Velôrte</h2>
     <p>Crafted for those who move different.</p>
-
     <a href="about.html" class="btn">Learn More</a>
   </section>
 
-  <!-- JS (FIXED PATH) -->
-  <script src="script.js"></script>
+  <footer>
+    <div class="footer-content">
+      <h3>VELÔRTE</h3>
+      <p>Luxury streetwear for the modern era</p>
+      <div class="social-links">
+        <a href="https://instagram.com/velorte" target="_blank" class="social-link instagram">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+          </svg>
+          <span>@velorte</span>
+        </a>
+        <a href="https://pinterest.com/velorte" target="_blank" class="social-link pinterest">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M8 12c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4"></path>
+            <path d="M12 16l-2 6"></path>
+          </svg>
+          <span>@velorte</span>
+        </a>
+      </div>
+      <p class="copyright">&copy; 2024 Velôrte. All rights reserved.</p>
+    </div>
+  </footer>
 
+  <script src="script.js"></script>
 </body>
 </html>
