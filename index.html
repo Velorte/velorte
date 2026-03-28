@@ -40,51 +40,125 @@
     </div>
   </div>
 
-  <section class="hero">
-    <h2>Luxury Meets Street</h2>
-    <p>Old Money × Modern Edge</p>
-    <a href="shop.html" class="btn">Shop Now</a>
+  <!-- NEW HERO: Full-bleed immersive design with animated elements -->
+  <section class="hero-new">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <div class="hero-badge">Est. 2026</div>
+      <h1 class="hero-title">
+        <span class="line1">LUXURY</span>
+        <span class="line2">MEETS</span>
+        <span class="line3">STREET</span>
+      </h1>
+      <p class="hero-subtitle">Where Old World Craftsmanship Meets Modern Rebellion</p>
+      <div class="hero-stats">
+        <div class="stat">
+          <span class="stat-num">450</span>
+          <span class="stat-label">GSM Premium Cotton</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">100%</span>
+          <span class="stat-label">Italian Milled Fabrics</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">∞</span>
+          <span class="stat-label">Limited Drops</span>
+        </div>
+      </div>
+      <a href="shop.html" class="btn-hero">Explore Collection</a>
+    </div>
+    <div class="hero-scroll">Scroll</div>
   </section>
 
+  <!-- CATEGORY SECTIONS -->
+  <section class="categories-section">
+    <h2 class="section-title">Shop by Category</h2>
+    <div class="categories-grid">
+      <a href="shop.html?category=hoodies" class="category-card large">
+        <div class="category-image" style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);">
+          <span class="category-icon">🏴</span>
+        </div>
+        <div class="category-info">
+          <h3>Hoodies</h3>
+          <p>Signature heavyweight essentials</p>
+          <span class="category-count">4 Products</span>
+        </div>
+      </a>
+      
+      <a href="shop.html?category=tees" class="category-card">
+        <div class="category-image" style="background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);">
+          <span class="category-icon">👕</span>
+        </div>
+        <div class="category-info">
+          <h3>Tees</h3>
+          <p>Organic cotton basics</p>
+          <span class="category-count">2 Products</span>
+        </div>
+      </a>
+      
+      <a href="shop.html?category=jackets" class="category-card">
+        <div class="category-image" style="background: linear-gradient(135deg, #1a1a1a 0%, #3d3d3d 100%);">
+          <span class="category-icon">🧥</span>
+        </div>
+        <div class="category-info">
+          <h3>Jackets</h3>
+          <p>Limited outerwear</p>
+          <span class="category-count">1 Product</span>
+        </div>
+      </a>
+      
+      <a href="shop.html?category=bottoms" class="category-card">
+        <div class="category-image" style="background: linear-gradient(135deg, #2d2d2d 0%, #1a1a1a 100%);">
+          <span class="category-icon">👖</span>
+        </div>
+        <div class="category-info">
+          <h3>Bottoms</h3>
+          <p>Tailored & relaxed fits</p>
+          <span class="category-count">2 Products</span>
+        </div>
+      </a>
+      
+      <a href="shop.html?category=accessories" class="category-card">
+        <div class="category-image" style="background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);">
+          <span class="category-icon">🧢</span>
+        </div>
+        <div class="category-info">
+          <h3>Accessories</h3>
+          <p>Finishing touches</p>
+          <span class="category-count">2 Products</span>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- FEATURED PRODUCTS -->
   <section id="collection">
-    <h2>Our Collection</h2>
-    <div class="product-grid">
-      <div class="product-card">
-        <a href="product-detail.html?id=1" class="product-link">
-          <img src="https://via.placeholder.com/300x400/1a1a1a/ffffff?text=Velorte+Signature+Hoodie" alt="Signature Hoodie">
-          <h3>Signature Hoodie</h3>
-          <p class="price">$149.00</p>
-        </a>
+    <h2 class="section-title">New Arrivals</h2>
+    <div class="product-grid" id="featured-products">
+      <!-- Products loaded by JavaScript -->
+    </div>
+    <a href="shop.html" class="btn">View All Products</a>
+  </section>
+
+  <!-- BRAND VALUES -->
+  <section class="values-section">
+    <div class="values-container">
+      <div class="value-item">
+        <span class="value-num">01</span>
+        <h3>Premium Materials</h3>
+        <p>Sourced from Italian and Japanese mills with centuries of craftsmanship heritage.</p>
       </div>
-      <div class="product-card">
-        <a href="product-detail.html?id=2" class="product-link">
-          <img src="https://via.placeholder.com/300x400/2d2d2d/ffffff?text=Street+Essential+Tee" alt="Street Essential Tee">
-          <h3>Street Essential Tee</h3>
-          <p class="price">$89.00</p>
-        </a>
+      <div class="value-item">
+        <span class="value-num">02</span>
+        <h3>Small Batch</h3>
+        <p>Every piece is produced in limited quantities. Once sold out, never restocked.</p>
       </div>
-      <div class="product-card">
-        <a href="product-detail.html?id=3" class="product-link">
-          <img src="https://via.placeholder.com/300x400/1a1a1a/ffffff?text=Luxury+Varsity+Jacket" alt="Luxury Varsity Jacket">
-          <h3>Luxury Varsity Jacket</h3>
-          <p class="price">$299.00</p>
-        </a>
-      </div>
-      <div class="product-card">
-        <a href="product-detail.html?id=4" class="product-link">
-          <img src="https://via.placeholder.com/300x400/2d2d2d/ffffff?text=Old+Money+Trousers" alt="Old Money Trousers">
-          <h3>Old Money Trousers</h3>
-          <p class="price">$179.00</p>
-        </a>
+      <div class="value-item">
+        <span class="value-num">03</span>
+        <h3>Modern Silhouettes</h3>
+        <p>Designed for movement. From boardroom to street corner without missing a step.</p>
       </div>
     </div>
-    <a href="shop.html" class="btn">Explore Collection</a>
-  </section>
-
-  <section class="about-preview">
-    <h2>About Velôrte</h2>
-    <p>Crafted for those who move different.</p>
-    <a href="about.html" class="btn">Learn More</a>
   </section>
 
   <footer>
@@ -92,15 +166,15 @@
       <h3>VELÔRTE</h3>
       <p>Luxury streetwear for the modern era</p>
       <div class="social-links">
-        <a href="https://instagram.com/velorte" target="_blank" class="social-link instagram">
+        <a href="https://www.instagram.com/velorteclothing.in?igsh=MXNtbHY0OXU2MHV0OQ==" target="_blank" class="social-link instagram">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
             <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
             <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
           </svg>
-          <span>@velorte</span>
+          <span>@velorteclothing.in</span>
         </a>
-        <a href="https://pinterest.com/velorte" target="_blank" class="social-link pinterest">
+        <a href="https://pin.it/4Om5RYKiP" target="_blank" class="social-link pinterest">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <circle cx="12" cy="12" r="10"></circle>
             <path d="M8 12c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4"></path>
@@ -109,10 +183,30 @@
           <span>@velorte</span>
         </a>
       </div>
-      <p class="copyright">&copy; 2024 Velôrte. All rights reserved.</p>
+      <p class="copyright">&copy; 2026 Velôrte. All rights reserved.</p>
     </div>
   </footer>
 
   <script src="script.js"></script>
+  <script>
+    // Load featured products on homepage
+    const featuredProducts = [1, 2, 3, 4];
+    const productContainer = document.getElementById('featured-products');
+    
+    featuredProducts.forEach(id => {
+      const product = getProductData(id);
+      if (product) {
+        productContainer.innerHTML += `
+          <div class="product-card" data-category="${product.category}">
+            <a href="product-detail.html?id=${id}" class="product-link">
+              <img src="${product.image}" alt="${product.name}">
+              <h3>${product.name}</h3>
+              <p class="price">${product.price}</p>
+            </a>
+          </div>
+        `;
+      }
+    });
+  </script>
 </body>
 </html>
