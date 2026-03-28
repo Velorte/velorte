@@ -5,51 +5,6 @@
   <title>Shop | VELÔRTE</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
-  <style>
-    .shop-header {
-      padding-top: 120px;
-      text-align: center;
-      margin-bottom: 3rem;
-    }
-    
-    .shop-header h2 {
-      font-size: 2.5rem;
-      letter-spacing: 4px;
-      margin-bottom: 1rem;
-    }
-    
-    .shop-filters {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      margin-bottom: 3rem;
-      flex-wrap: wrap;
-    }
-    
-    .filter-btn {
-      padding: 0.5rem 1.5rem;
-      background: transparent;
-      border: 1px solid rgba(255, 255, 255, 0.3);
-      color: #fff;
-      cursor: pointer;
-      border-radius: 25px;
-      transition: all 0.3s;
-    }
-    
-    .filter-btn:hover, .filter-btn.active {
-      background: #fff;
-      color: #1a1a1a;
-    }
-    
-    .shop-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      padding: 0 2rem 4rem;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-  </style>
 </head>
 <body>
 
@@ -85,71 +40,23 @@
     <p>Curated luxury streetwear</p>
   </section>
 
+  <!-- WORKING FILTERS -->
   <div class="shop-filters">
-    <button class="filter-btn active">All</button>
-    <button class="filter-btn">Hoodies</button>
-    <button class="filter-btn">Tees</button>
-    <button class="filter-btn">Jackets</button>
-    <button class="filter-btn">Bottoms</button>
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="hoodies">Hoodies</button>
+    <button class="filter-btn" data-filter="tees">Tees</button>
+    <button class="filter-btn" data-filter="jackets">Jackets</button>
+    <button class="filter-btn" data-filter="bottoms">Bottoms</button>
+    <button class="filter-btn" data-filter="accessories">Accessories</button>
   </div>
 
-  <div class="shop-grid">
-    <div class="product-card">
-      <a href="product-detail.html?id=1" class="product-link">
-        <img src="https://via.placeholder.com/300x400/1a1a1a/ffffff?text=Signature+Hoodie" alt="Signature Hoodie">
-        <h3>Signature Hoodie</h3>
-        <p class="price">$149.00</p>
-      </a>
-    </div>
-    <div class="product-card">
-      <a href="product-detail.html?id=2" class="product-link">
-        <img src="https://via.placeholder.com/300x400/2d2d2d/ffffff?text=Street+Essential+Tee" alt="Street Essential Tee">
-        <h3>Street Essential Tee</h3>
-        <p class="price">$89.00</p>
-      </a>
-    </div>
-    <div class="product-card">
-      <a href="product-detail.html?id=3" class="product-link">
-        <img src="https://via.placeholder.com/300x400/1a1a1a/ffffff?text=Luxury+Varsity+Jacket" alt="Luxury Varsity Jacket">
-        <h3>Luxury Varsity Jacket</h3>
-        <p class="price">$299.00</p>
-      </a>
-    </div>
-    <div class="product-card">
-      <a href="product-detail.html?id=4" class="product-link">
-        <img src="https://via.placeholder.com/300x400/2d2d2d/ffffff?text=Old+Money+Trousers" alt="Old Money Trousers">
-        <h3>Old Money Trousers</h3>
-        <p class="price">$179.00</p>
-      </a>
-    </div>
-    <div class="product-card">
-      <a href="product-detail.html?id=5" class="product-link">
-        <img src="https://via.placeholder.com/300x400/1a1a1a/ffffff?text=Velorte+Cap" alt="Velorte Cap">
-        <h3>Velorte Cap</h3>
-        <p class="price">$59.00</p>
-      </a>
-    </div>
-    <div class="product-card">
-      <a href="product-detail.html?id=6" class="product-link">
-        <img src="https://via.placeholder.com/300x400/2d2d2d/ffffff?text=Essential+Sweatpants" alt="Essential Sweatpants">
-        <h3>Essential Sweatpants</h3>
-        <p class="price">$129.00</p>
-      </a>
-    </div>
-    <div class="product-card">
-      <a href="product-detail.html?id=7" class="product-link">
-        <img src="https://via.placeholder.com/300x400/1a1a1a/ffffff?text=Premium+Beanie" alt="Premium Beanie">
-        <h3>Premium Beanie</h3>
-        <p class="price">$49.00</p>
-      </a>
-    </div>
-    <div class="product-card">
-      <a href="product-detail.html?id=8" class="product-link">
-        <img src="https://via.placeholder.com/300x400/2d2d2d/ffffff?text=Oversized+Tee" alt="Oversized Tee">
-        <h3>Oversized Tee</h3>
-        <p class="price">$79.00</p>
-      </a>
-    </div>
+  <div class="shop-grid" id="shop-products">
+    <!-- Products loaded by JavaScript -->
+  </div>
+
+  <div class="no-results" id="no-results" style="display: none;">
+    <p>No products found in this category.</p>
+    <a href="shop.html" class="btn">View All Products</a>
   </div>
 
   <footer>
@@ -157,14 +64,14 @@
       <h3>VELÔRTE</h3>
       <p>Luxury streetwear for the modern era</p>
       <div class="social-links">
-        <a href="https://instagram.com/velorte" target="_blank" class="social-link">
+        <a href="https://www.instagram.com/velorteclothing.in?igsh=MXNtbHY0OXU2MHV0OQ==" target="_blank" class="social-link">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
             <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
           </svg>
-          <span>@velorte</span>
+          <span>@velorteclothing.in</span>
         </a>
-        <a href="https://pinterest.com/velorte" target="_blank" class="social-link">
+        <a href="https://pin.it/4Om5RYKiP" target="_blank" class="social-link">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <circle cx="12" cy="12" r="10"></circle>
             <path d="M8 12c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4"></path>
@@ -172,10 +79,78 @@
           <span>@velorte</span>
         </a>
       </div>
-      <p class="copyright">&copy; 2024 Velôrte. All rights reserved.</p>
+      <p class="copyright">&copy; 2026 Velôrte. All rights reserved.</p>
     </div>
   </footer>
 
   <script src="script.js"></script>
+  <script>
+    // Shop page filtering
+    const shopProducts = document.getElementById('shop-products');
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const noResults = document.getElementById('no-results');
+    
+    // All 8 products with categories
+    const allProducts = [
+      { id: 1, name: "Signature Hoodie", price: "$149.00", category: "hoodies", image: "https://via.placeholder.com/300x400/1a1a1a/ffffff?text=Signature+Hoodie" },
+      { id: 2, name: "Street Essential Tee", price: "$89.00", category: "tees", image: "https://via.placeholder.com/300x400/2d2d2d/ffffff?text=Street+Essential+Tee" },
+      { id: 3, name: "Luxury Varsity Jacket", price: "$299.00", category: "jackets", image: "https://via.placeholder.com/300x400/1a1a1a/ffffff?text=Luxury+Varsity+Jacket" },
+      { id: 4, name: "Old Money Trousers", price: "$179.00", category: "bottoms", image: "https://via.placeholder.com/300x400/2d2d2d/ffffff?text=Old+Money+Trousers" },
+      { id: 5, name: "Velorte Cap", price: "$59.00", category: "accessories", image: "https://via.placeholder.com/300x400/1a1a1a/ffffff?text=Velorte+Cap" },
+      { id: 6, name: "Essential Sweatpants", price: "$129.00", category: "bottoms", image: "https://via.placeholder.com/300x400/2d2d2d/ffffff?text=Essential+Sweatpants" },
+      { id: 7, name: "Premium Beanie", price: "$49.00", category: "accessories", image: "https://via.placeholder.com/300x400/1a1a1a/ffffff?text=Premium+Beanie" },
+      { id: 8, name: "Oversized Tee", price: "$79.00", category: "tees", image: "https://via.placeholder.com/300x400/2d2d2d/ffffff?text=Oversized+Tee" }
+    ];
+    
+    function displayProducts(filter = 'all') {
+      shopProducts.innerHTML = '';
+      
+      const filtered = filter === 'all' 
+        ? allProducts 
+        : allProducts.filter(p => p.category === filter);
+      
+      if (filtered.length === 0) {
+        noResults.style.display = 'block';
+      } else {
+        noResults.style.display = 'none';
+        filtered.forEach(product => {
+          shopProducts.innerHTML += `
+            <div class="product-card" data-category="${product.category}">
+              <a href="product-detail.html?id=${product.id}" class="product-link">
+                <img src="${product.image}" alt="${product.name}">
+                <h3>${product.name}</h3>
+                <p class="price">${product.price}</p>
+              </a>
+            </div>
+          `;
+        });
+      }
+    }
+    
+    // Filter button clicks
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        displayProducts(btn.dataset.filter);
+      });
+    });
+    
+    // Check URL for category parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const categoryParam = urlParams.get('category');
+    if (categoryParam) {
+      const targetBtn = document.querySelector(`[data-filter="${categoryParam}"]`);
+      if (targetBtn) {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        targetBtn.classList.add('active');
+        displayProducts(categoryParam);
+      } else {
+        displayProducts('all');
+      }
+    } else {
+      displayProducts('all');
+    }
+  </script>
 </body>
 </html>
