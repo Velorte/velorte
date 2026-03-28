@@ -1,9 +1,10 @@
-// Product database - all 8 products with complete data
+// Complete product database - 12 products across 6 collections
 const productsData = {
   1: {
     name: "Signature Hoodie",
     price: "$149.00",
-    category: "hoodies",
+    category: "streetwear",
+    collections: ["latest", "streetwear"],
     description: "Premium heavyweight cotton hoodie with embroidered Velôrte logo. Features oversized fit, kangaroo pocket, and ribbed cuffs. 450gsm French terry cotton.",
     image: "https://via.placeholder.com/600x800/1a1a1a/ffffff?text=Signature+Hoodie",
     sizes: ["S", "M", "L", "XL", "XXL"]
@@ -11,7 +12,8 @@ const productsData = {
   2: {
     name: "Street Essential Tee",
     price: "$89.00",
-    category: "tees",
+    category: "streetwear",
+    collections: ["streetwear"],
     description: "Essential streetwear tee crafted from 100% organic cotton. Minimal branding, maximum comfort. Pre-shrunk with reinforced shoulder seams.",
     image: "https://via.placeholder.com/600x800/2d2d2d/ffffff?text=Street+Essential+Tee",
     sizes: ["S", "M", "L", "XL"]
@@ -19,7 +21,8 @@ const productsData = {
   3: {
     name: "Luxury Varsity Jacket",
     price: "$299.00",
-    category: "jackets",
+    category: "oldmoney",
+    collections: ["latest", "oldmoney"],
     description: "Wool-blend varsity jacket with genuine leather sleeves. Gold-tone hardware and custom Velôrte chenille patches. Limited edition release.",
     image: "https://via.placeholder.com/600x800/1a1a1a/ffffff?text=Luxury+Varsity+Jacket",
     sizes: ["S", "M", "L", "XL", "XXL"]
@@ -27,7 +30,8 @@ const productsData = {
   4: {
     name: "Old Money Trousers",
     price: "$179.00",
-    category: "bottoms",
+    category: "oldmoney",
+    collections: ["oldmoney"],
     description: "Tailored wide-leg trousers in premium wool blend. Pleated front with signature Velôrte hardware. Perfect for elevated casual wear.",
     image: "https://via.placeholder.com/600x800/2d2d2d/ffffff?text=Old+Money+Trousers",
     sizes: ["28", "30", "32", "34", "36"]
@@ -36,6 +40,7 @@ const productsData = {
     name: "Velorte Cap",
     price: "$59.00",
     category: "accessories",
+    collections: ["accessories"],
     description: "Structured 6-panel cap with embroidered logo. Adjustable leather strap closure. Premium cotton twill construction.",
     image: "https://via.placeholder.com/600x800/1a1a1a/ffffff?text=Velorte+Cap",
     sizes: ["One Size"]
@@ -43,7 +48,8 @@ const productsData = {
   6: {
     name: "Essential Sweatpants",
     price: "$129.00",
-    category: "bottoms",
+    category: "gym",
+    collections: ["gym", "streetwear"],
     description: "Relaxed fit sweatpants with tapered leg. Elastic waistband with drawcord. Side pockets and back zip pocket. 400gsm cotton fleece.",
     image: "https://via.placeholder.com/600x800/2d2d2d/ffffff?text=Essential+Sweatpants",
     sizes: ["S", "M", "L", "XL", "XXL"]
@@ -52,6 +58,7 @@ const productsData = {
     name: "Premium Beanie",
     price: "$49.00",
     category: "accessories",
+    collections: ["accessories", "latest"],
     description: "Ribbed knit beanie in premium merino wool blend. Leather patch logo. One size fits all with stretch recovery.",
     image: "https://via.placeholder.com/600x800/1a1a1a/ffffff?text=Premium+Beanie",
     sizes: ["One Size"]
@@ -59,10 +66,47 @@ const productsData = {
   8: {
     name: "Oversized Tee",
     price: "$79.00",
-    category: "tees",
+    category: "streetwear",
+    collections: ["streetwear", "new"],
     description: "Boxy oversized t-shirt with dropped shoulders. Heavyweight 280gsm cotton. Garment dyed for unique color depth.",
     image: "https://via.placeholder.com/600x800/2d2d2d/ffffff?text=Oversized+Tee",
     sizes: ["S", "M", "L", "XL"]
+  },
+  9: {
+    name: "Performance Tank",
+    price: "$69.00",
+    category: "gym",
+    collections: ["gym", "latest"],
+    description: "Moisture-wicking performance tank with mesh panels. Ergonomic seams for full range of motion. Antimicrobial finish.",
+    image: "https://via.placeholder.com/600x800/1a1a1a/ffffff?text=Performance+Tank",
+    sizes: ["S", "M", "L", "XL", "XXL"]
+  },
+  10: {
+    name: "Wool Overcoat",
+    price: "$399.00",
+    category: "oldmoney",
+    collections: ["oldmoney", "new"],
+    description: "Double-breasted wool overcoat in Italian cashmere blend. Peak lapels and welt pockets. Fully lined interior.",
+    image: "https://via.placeholder.com/600x800/2d2d2d/ffffff?text=Wool+Overcoat",
+    sizes: ["S", "M", "L", "XL"]
+  },
+  11: {
+    name: "Leather Belt",
+    price: "$89.00",
+    category: "accessories",
+    collections: ["accessories", "oldmoney"],
+    description: "Full-grain Italian leather belt with brushed silver buckle. Hand-stitched edges. 35mm width.",
+    image: "https://via.placeholder.com/600x800/1a1a1a/ffffff?text=Leather+Belt",
+    sizes: ["S", "M", "L", "XL"]
+  },
+  12: {
+    name: "Compression Leggings",
+    price: "$99.00",
+    category: "gym",
+    collections: ["gym"],
+    description: "High-waist compression leggings with phone pocket. Four-way stretch fabric with sweat-wicking technology.",
+    image: "https://via.placeholder.com/600x800/2d2d2d/ffffff?text=Compression+Leggings",
+    sizes: ["XS", "S", "M", "L", "XL"]
   }
 };
 
@@ -153,7 +197,6 @@ if (window.location.pathname.includes('product-detail.html')) {
       });
     }
   } else {
-    // Product not found
     const nameEl = document.getElementById('product-name');
     if (nameEl) nameEl.textContent = 'Product Not Found';
   }
