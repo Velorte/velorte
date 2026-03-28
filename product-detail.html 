@@ -5,7 +5,8 @@
   <title>Product | VELÔRTE</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Cache-Control" content="no-cache">
-  <link rel="stylesheet" href="style.css?v=2">
+  <link rel="stylesheet" href="style.css?v=3">
+  <script src="https://js.stripe.com/v3/"></script>
   <style>
     .product-detail-container {
       max-width: 1000px;
@@ -27,6 +28,8 @@
     .product-info .price {
       font-size: 1.5rem;
       margin-bottom: 1.5rem;
+      color: #fff;
+      font-weight: 600;
     }
     .product-info p {
       color: #888;
@@ -47,6 +50,7 @@
       color: #fff;
       cursor: pointer;
       border-radius: 6px;
+      transition: all 0.3s;
     }
     .size-btn.selected, .size-btn:hover {
       background: #fff;
@@ -62,12 +66,21 @@
       text-transform: uppercase;
       letter-spacing: 2px;
       cursor: pointer;
+      transition: all 0.3s;
+    }
+    .add-to-cart:hover {
+      background: #ddd;
+      transform: translateY(-2px);
     }
     .back-link {
       display: inline-block;
       margin-top: 2rem;
       color: #666;
       text-decoration: none;
+      transition: color 0.3s;
+    }
+    .back-link:hover {
+      color: #fff;
     }
     @media (max-width: 768px) {
       .product-detail-container {
@@ -87,22 +100,67 @@
         <li><a href="shop.html">Shop</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="contact.html">Contact</a></li>
-        <li><a href="#" id="signin-btn" class="signin-link">Sign In</a></li>
+        <li><a href="javascript:void(0)" id="signin-btn" class="signin-link">Sign In</a></li>
+        <li><a href="javascript:void(0)" onclick="toggleCart()">Cart (<span id="cart-count">0</span>)</a></li>
       </ul>
     </nav>
   </header>
 
+  <!-- Sign In Modal -->
   <div id="signin-modal" class="modal">
     <div class="modal-content">
-      <span class="close-btn" id="close-modal">&times;</span>
+      <button class="close-btn" onclick="closeModal()">&times;</button>
       <h2>Sign In</h2>
-      <form id="login-form">
+      <form id="login-form" onsubmit="handleLogin(event)">
         <label>Email</label>
-        <input type="email" id="email" required>
+        <input type="email" id="email" required placeholder="your@email.com">
         <label>Password</label>
-        <input type="password" id="password" required>
+        <input type="password" id="password" required placeholder="••••••••">
         <button type="submit" class="btn-submit">Sign In</button>
       </form>
+    </div>
+  </div>
+
+  <!-- Cart Sidebar -->
+  <div id="cart-sidebar" class="cart-sidebar">
+    <div class="cart-header">
+      <h3>Your Cart</h3>
+      <button class="close-cart" onclick="toggleCart()">&times;</button>
+    </div>
+    <div id="cart-items" class="cart-items">
+      <p class="empty-cart">Your cart is empty</p>
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Total:</span>
+        <span id="cart-total">₹0</span>
+      </div>
+      <button class="btn-checkout" onclick="openPayment()">Checkout</button>
+    </div>
+  </div>
+
+  <!-- Payment Modal -->
+  <div id="payment-modal" class="payment-modal">
+    <div class="payment-content">
+      <button class="close-btn" onclick="closePayment()">&times;</button>
+      <h2>Secure Checkout</h2>
+      <div class="payment-summary">
+        <div class="payment-row">
+          <span>Subtotal</span>
+          <span id="payment-subtotal">₹0</span>
+        </div>
+        <div class="payment-row">
+          <span>Shipping</span>
+          <span>Calculated next</span>
+        </div>
+        <div class="payment-row total">
+          <span>Total</span>
+          <span id="payment-total">₹0</span>
+        </div>
+      </div>
+      <div id="card-element"></div>
+      <div id="card-errors"></div>
+      <button class="btn-submit" id="pay-btn" onclick="processPayment()" style="width: 100%;">Pay Now</button>
     </div>
   </div>
 
@@ -112,10 +170,10 @@
     </div>
     <div class="product-info">
       <h1 id="product-name">Loading...</h1>
-      <p class="price" id="product-price">$0</p>
+      <p class="price" id="product-price">₹0</p>
       <p id="product-description">Loading...</p>
       <div id="size-options"></div>
-      <button class="add-to-cart" onclick="alert('Added to cart!')">Add to Cart</button>
+      <button class="add-to-cart" id="add-to-cart-btn">Add to Cart</button>
       <br>
       <a href="shop.html" class="back-link">← Back to Shop</a>
     </div>
@@ -128,6 +186,58 @@
     </div>
   </footer>
 
-  <script src="script.js?v=2"></script>
+  <script src="script.js?v=3"></script>
+  <script>
+    // Product data
+    const productData = {
+      1: { name: "Signature Hoodie", price: 4999, description: "Premium heavyweight cotton hoodie with embroidered Velôrte logo. 450gsm French terry cotton.", sizes: ["S", "M", "L", "XL", "XXL"], image: "https://via.placeholder.com/600x800/1a1a1a/fff?text=Hoodie", printifyId: "YOUR_PRINTIFY_ID_1" },
+      2: { name: "Varsity Jacket", price: 8999, description: "Wool-blend varsity jacket with genuine leather sleeves. Limited edition.", sizes: ["S", "M", "L", "XL", "XXL"], image: "https://via.placeholder.com/600x800/2d2d2d/fff?text=Jacket", printifyId: "YOUR_PRINTIFY_ID_2" },
+      3: { name: "Essential Tee", price: 2499, description: "100% organic cotton tee. Minimal branding, maximum comfort.", sizes: ["S", "M", "L", "XL"], image: "https://via.placeholder.com/600x800/1a1a1a/fff?text=Tee", printifyId: "YOUR_PRINTIFY_ID_3" },
+      4: { name: "Old Money Trousers", price: 5499, description: "Tailored wide-leg trousers in premium wool blend.", sizes: ["28", "30", "32", "34", "36"], image: "https://via.placeholder.com/600x800/2d2d2d/fff?text=Trousers", printifyId: "YOUR_PRINTIFY_ID_4" },
+      5: { name: "Velorte Cap", price: 1999, description: "Structured 6-panel cap with embroidered logo.", sizes: ["One Size"], image: "https://via.placeholder.com/600x800/1a1a1a/fff?text=Cap", printifyId: "YOUR_PRINTIFY_ID_5" },
+      6: { name: "Sweatpants", price: 3999, description: "Relaxed fit sweatpants with tapered leg. 400gsm cotton fleece.", sizes: ["S", "M", "L", "XL", "XXL"], image: "https://via.placeholder.com/600x800/2d2d2d/fff?text=Sweatpants", printifyId: "YOUR_PRINTIFY_ID_6" },
+      7: { name: "Beanie", price: 1499, description: "Ribbed knit beanie in premium merino wool blend.", sizes: ["One Size"], image: "https://via.placeholder.com/600x800/1a1a1a/fff?text=Beanie", printifyId: "YOUR_PRINTIFY_ID_7" },
+      8: { name: "Oversized Tee", price: 2999, description: "Boxy oversized t-shirt with dropped shoulders. 280gsm cotton.", sizes: ["S", "M", "L", "XL"], image: "https://via.placeholder.com/600x800/2d2d2d/fff?text=Oversized", printifyId: "YOUR_PRINTIFY_ID_8" },
+      9: { name: "Gym Tank", price: 1999, description: "Moisture-wicking performance tank with mesh panels.", sizes: ["S", "M", "L", "XL", "XXL"], image: "https://via.placeholder.com/600x800/1a1a1a/fff?text=Tank", printifyId: "YOUR_PRINTIFY_ID_9" },
+      10: { name: "Wool Coat", price: 12999, description: "Double-breasted wool overcoat in Italian cashmere blend.", sizes: ["S", "M", "L", "XL"], image: "https://via.placeholder.com/600x800/2d2d2d/fff?text=Coat", printifyId: "YOUR_PRINTIFY_ID_10" },
+      11: { name: "Leather Belt", price: 2499, description: "Full-grain Italian leather belt with brushed silver buckle.", sizes: ["S", "M", "L", "XL"], image: "https://via.placeholder.com/600x800/1a1a1a/fff?text=Belt", printifyId: "YOUR_PRINTIFY_ID_11" },
+      12: { name: "Leggings", price: 2999, description: "High-waist compression leggings with phone pocket.", sizes: ["XS", "S", "M", "L", "XL"], image: "https://via.placeholder.com/600x800/2d2d2d/fff?text=Leggings", printifyId: "YOUR_PRINTIFY_ID_12" }
+    };
+
+    // Load product
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('id');
+    const product = productData[productId];
+
+    if (product) {
+      document.getElementById('product-name').textContent = product.name;
+      document.getElementById('product-price').textContent = '₹' + product.price.toLocaleString();
+      document.getElementById('product-description').textContent = product.description;
+      document.getElementById('product-image').src = product.image;
+      document.getElementById('product-image').alt = product.name;
+
+      const sizeContainer = document.getElementById('size-options');
+      let selectedSize = product.sizes[0];
+
+      product.sizes.forEach((size, index) => {
+        const btn = document.createElement('button');
+        btn.className = 'size-btn' + (index === 0 ? ' selected' : '');
+        btn.textContent = size;
+        btn.onclick = function() {
+          document.querySelectorAll('.size-btn').forEach(b => b.classList.remove('selected'));
+          this.classList.add('selected');
+          selectedSize = size;
+        };
+        sizeContainer.appendChild(btn);
+      });
+
+      document.getElementById('add-to-cart-btn').onclick = function() {
+        addToCart(productId, product.name, product.price, selectedSize, product.image);
+        showNotification('Added to cart!');
+      };
+    } else {
+      document.querySelector('.product-detail-container').innerHTML = '<p style="text-align: center; padding: 4rem;">Product not found</p>';
+    }
+  </script>
 </body>
 </html>
