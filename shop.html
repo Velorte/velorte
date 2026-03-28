@@ -5,7 +5,9 @@
   <title>Shop | VELÔRTE</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-  <link rel="stylesheet" href="style.css?v=2">
+  <link rel="stylesheet" href="style.css?v=3">
+  <!-- Stripe.js for payment -->
+  <script src="https://js.stripe.com/v3/"></script>
 </head>
 <body>
 
@@ -17,22 +19,67 @@
         <li><a href="shop.html">Shop</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="contact.html">Contact</a></li>
-        <li><a href="#" id="signin-btn" class="signin-link">Sign In</a></li>
+        <li><a href="javascript:void(0)" id="signin-btn" class="signin-link">Sign In</a></li>
+        <li><a href="javascript:void(0)" onclick="toggleCart()">Cart (<span id="cart-count">0</span>)</a></li>
       </ul>
     </nav>
   </header>
 
+  <!-- Sign In Modal -->
   <div id="signin-modal" class="modal">
     <div class="modal-content">
-      <span class="close-btn" id="close-modal">&times;</span>
+      <button class="close-btn" onclick="closeModal()">&times;</button>
       <h2>Sign In</h2>
-      <form id="login-form">
+      <form id="login-form" onsubmit="handleLogin(event)">
         <label>Email</label>
-        <input type="email" id="email" required>
+        <input type="email" id="email" required placeholder="your@email.com">
         <label>Password</label>
-        <input type="password" id="password" required>
+        <input type="password" id="password" required placeholder="••••••••">
         <button type="submit" class="btn-submit">Sign In</button>
       </form>
+    </div>
+  </div>
+
+  <!-- Cart Sidebar -->
+  <div id="cart-sidebar" class="cart-sidebar">
+    <div class="cart-header">
+      <h3>Your Cart</h3>
+      <button class="close-cart" onclick="toggleCart()">&times;</button>
+    </div>
+    <div id="cart-items" class="cart-items">
+      <p class="empty-cart">Your cart is empty</p>
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total">
+        <span>Total:</span>
+        <span id="cart-total">₹0</span>
+      </div>
+      <button class="btn-checkout" onclick="openPayment()">Checkout</button>
+    </div>
+  </div>
+
+  <!-- Payment Modal -->
+  <div id="payment-modal" class="payment-modal">
+    <div class="payment-content">
+      <button class="close-btn" onclick="closePayment()">&times;</button>
+      <h2>Secure Checkout</h2>
+      <div class="payment-summary">
+        <div class="payment-row">
+          <span>Subtotal</span>
+          <span id="payment-subtotal">₹0</span>
+        </div>
+        <div class="payment-row">
+          <span>Shipping</span>
+          <span>Calculated next</span>
+        </div>
+        <div class="payment-row total">
+          <span>Total</span>
+          <span id="payment-total">₹0</span>
+        </div>
+      </div>
+      <div id="card-element"></div>
+      <div id="card-errors"></div>
+      <button class="btn-submit" id="pay-btn" onclick="processPayment()" style="width: 100%;">Pay Now</button>
     </div>
   </div>
 
@@ -62,29 +109,30 @@
     <div class="footer-content">
       <h3>VELÔRTE</h3>
       <div class="social-links">
-        <a href="https://www.instagram.com/velorteclothing.in?igsh=MXNtbHY0OXU2MHV0OQ==" target="_blank" class="social-link">Instagram</a>
-        <a href="https://pin.it/4Om5RYKiP" target="_blank" class="social-link">Pinterest</a>
+        <!-- FIXED: Added target="_blank" and real URLs -->
+        <a href="https://www.instagram.com/velorteclothing.in?igsh=MXNtbHY0OXU2MHV0OQ==" target="_blank" rel="noopener noreferrer" class="social-link">Instagram</a>
+        <a href="https://pin.it/4Om5RYKiP" target="_blank" rel="noopener noreferrer" class="social-link">Pinterest</a>
       </div>
       <p class="copyright">&copy; 2026 Velôrte</p>
     </div>
   </footer>
 
-  <script src="script.js?v=2"></script>
+  <script src="script.js?v=3"></script>
   <script>
-    // Same products as index
+    // Products database with Printify IDs
     const allProducts = [
-      {id: 1, name: "Signature Hoodie", price: "$149", image: "https://via.placeholder.com/300x400/1a1a1a/fff?text=Hoodie", tags: ["latest", "streetwear"]},
-      {id: 2, name: "Varsity Jacket", price: "$299", image: "https://via.placeholder.com/300x400/2d2d2d/fff?text=Jacket", tags: ["latest", "oldmoney"]},
-      {id: 3, name: "Essential Tee", price: "$89", image: "https://via.placeholder.com/300x400/1a1a1a/fff?text=Tee", tags: ["streetwear"]},
-      {id: 4, name: "Old Money Trousers", price: "$179", image: "https://via.placeholder.com/300x400/2d2d2d/fff?text=Trousers", tags: ["oldmoney"]},
-      {id: 5, name: "Velorte Cap", price: "$59", image: "https://via.placeholder.com/300x400/1a1a1a/fff?text=Cap", tags: ["accessories"]},
-      {id: 6, name: "Sweatpants", price: "$129", image: "https://via.placeholder.com/300x400/2d2d2d/fff?text=Sweatpants", tags: ["gym", "streetwear"]},
-      {id: 7, name: "Beanie", price: "$49", image: "https://via.placeholder.com/300x400/1a1a1a/fff?text=Beanie", tags: ["accessories", "latest"]},
-      {id: 8, name: "Oversized Tee", price: "$79", image: "https://via.placeholder.com/300x400/2d2d2d/fff?text=Oversized", tags: ["streetwear", "new"]},
-      {id: 9, name: "Gym Tank", price: "$69", image: "https://via.placeholder.com/300x400/1a1a1a/fff?text=Tank", tags: ["gym", "latest"]},
-      {id: 10, name: "Wool Coat", price: "$399", image: "https://via.placeholder.com/300x400/2d2d2d/fff?text=Coat", tags: ["oldmoney", "new"]},
-      {id: 11, name: "Leather Belt", price: "$89", image: "https://via.placeholder.com/300x400/1a1a1a/fff?text=Belt", tags: ["accessories", "oldmoney"]},
-      {id: 12, name: "Leggings", price: "$99", image: "https://via.placeholder.com/300x400/2d2d2d/fff?text=Leggings", tags: ["gym"]}
+      {id: 1, name: "Signature Hoodie", price: 4999, image: "https://via.placeholder.com/300x400/1a1a1a/fff?text=Hoodie", tags: ["latest", "streetwear"], printifyId: "YOUR_PRINTIFY_ID_1", sizes: ["S", "M", "L", "XL", "XXL"]},
+      {id: 2, name: "Varsity Jacket", price: 8999, image: "https://via.placeholder.com/300x400/2d2d2d/fff?text=Jacket", tags: ["latest", "oldmoney"], printifyId: "YOUR_PRINTIFY_ID_2", sizes: ["S", "M", "L", "XL", "XXL"]},
+      {id: 3, name: "Essential Tee", price: 2499, image: "https://via.placeholder.com/300x400/1a1a1a/fff?text=Tee", tags: ["streetwear", "new"], printifyId: "YOUR_PRINTIFY_ID_3", sizes: ["S", "M", "L", "XL"]},
+      {id: 4, name: "Old Money Trousers", price: 5499, image: "https://via.placeholder.com/300x400/2d2d2d/fff?text=Trousers", tags: ["oldmoney"], printifyId: "YOUR_PRINTIFY_ID_4", sizes: ["28", "30", "32", "34", "36"]},
+      {id: 5, name: "Velorte Cap", price: 1999, image: "https://via.placeholder.com/300x400/1a1a1a/fff?text=Cap", tags: ["accessories"], printifyId: "YOUR_PRINTIFY_ID_5", sizes: ["One Size"]},
+      {id: 6, name: "Sweatpants", price: 3999, image: "https://via.placeholder.com/300x400/2d2d2d/fff?text=Sweatpants", tags: ["gym", "streetwear"], printifyId: "YOUR_PRINTIFY_ID_6", sizes: ["S", "M", "L", "XL", "XXL"]},
+      {id: 7, name: "Beanie", price: 1499, image: "https://via.placeholder.com/300x400/1a1a1a/fff?text=Beanie", tags: ["accessories", "latest"], printifyId: "YOUR_PRINTIFY_ID_7", sizes: ["One Size"]},
+      {id: 8, name: "Oversized Tee", price: 2999, image: "https://via.placeholder.com/300x400/2d2d2d/fff?text=Oversized", tags: ["streetwear", "new"], printifyId: "YOUR_PRINTIFY_ID_8", sizes: ["S", "M", "L", "XL"]},
+      {id: 9, name: "Gym Tank", price: 1999, image: "https://via.placeholder.com/300x400/1a1a1a/fff?text=Tank", tags: ["gym", "latest"], printifyId: "YOUR_PRINTIFY_ID_9", sizes: ["S", "M", "L", "XL", "XXL"]},
+      {id: 10, name: "Wool Coat", price: 12999, image: "https://via.placeholder.com/300x400/2d2d2d/fff?text=Coat", tags: ["oldmoney", "new"], printifyId: "YOUR_PRINTIFY_ID_10", sizes: ["S", "M", "L", "XL"]},
+      {id: 11, name: "Leather Belt", price: 2499, image: "https://via.placeholder.com/300x400/1a1a1a/fff?text=Belt", tags: ["accessories", "oldmoney"], printifyId: "YOUR_PRINTIFY_ID_11", sizes: ["S", "M", "L", "XL"]},
+      {id: 12, name: "Leggings", price: 2999, image: "https://via.placeholder.com/300x400/2d2d2d/fff?text=Leggings", tags: ["gym"], printifyId: "YOUR_PRINTIFY_ID_12", sizes: ["XS", "S", "M", "L", "XL"]}
     ];
 
     function displayProducts(filter) {
@@ -110,14 +158,34 @@
       } else {
         noResults.style.display = 'none';
         container.innerHTML = filtered.map(p => `
-          <div class="product-card">
-            <a href="product-detail.html?id=${p.id}" class="product-link">
+          <div class="product-card" onclick="openProductDetail(${p.id})">
+            <div class="product-link">
               <img src="${p.image}" alt="${p.name}">
               <h3>${p.name}</h3>
-              <p class="price">${p.price}</p>
-            </a>
+              <p class="price">₹${p.price.toLocaleString()}</p>
+              <button class="btn" onclick="event.stopPropagation(); quickAdd(${p.id})" style="margin-top: 0.5rem; padding: 0.5rem 1rem; font-size: 0.7rem;">Quick Add</button>
+            </div>
           </div>
         `).join('');
+      }
+    }
+
+    function openProductDetail(productId) {
+      window.location.href = `product-detail.html?id=${productId}`;
+    }
+
+    function quickAdd(productId) {
+      const product = allProducts.find(p => p.id === productId);
+      if (product) {
+        // For products with multiple sizes, show size selection
+        if (product.sizes.length > 1) {
+          const size = prompt(`Select size (${product.sizes.join(', ')}):`);
+          if (size && product.sizes.includes(size)) {
+            addToCart(product.id, product.name, product.price, size, product.image);
+          }
+        } else {
+          addToCart(product.id, product.name, product.price, product.sizes[0], product.image);
+        }
       }
     }
 
