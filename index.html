@@ -569,7 +569,7 @@
                 </div>
             </div>
             <div class="product-card" onclick="addToCart('Velvet Oversized Tee', 2999)">
-                <div class="product-image">[Product Image]</div>
+<div class="product-image">[Product Image]</div>
                 <div class="product-info">
                     <h3 class="product-name">Velvet Oversized Tee</h3>
                     <p class="product-price">₹2,999</p>
@@ -644,4 +644,185 @@
                 <div class="product-image">[Product Image]</div>
                 <div class="product-info">
                     <h3 class="product-name">Tech Wear Joggers</h3>
-                    <p class="product-price">₹3,99
+                    <p class="product-price">₹3,999</p>
+                    <span class="product-tag">Utility</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="collection-section" id="oldmoney">
+        <div class="section-header">
+            <h2 class="section-title">
+                Old Money
+                <span class="asymmetric">Timeless Elegance</span>
+            </h2>
+            <span class="section-count">16 items</span>
+        </div>
+        <div class="product-grid">
+            <div class="product-card" onclick="addToCart('Cashmere Blend Cardigan', 8999)">
+                <div class="product-image">[Product Image]</div>
+                <div class="product-info">
+                    <h3 class="product-name">Cashmere Blend Cardigan</h3>
+                    <p class="product-price">₹8,999</p>
+                    <span class="product-tag">Premium</span>
+                </div>
+            </div>
+            <div class="product-card" onclick="addToCart('Tailored Wool Trousers', 5999)">
+                <div class="product-image">[Product Image]</div>
+                <div class="product-info">
+                    <h3 class="product-name">Tailored Wool Trousers</h3>
+                    <p class="product-price">₹5,999</p>
+                    <span class="product-tag">Classic</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="collection-section" id="gym">
+        <div class="section-header">
+            <h2 class="section-title">
+                Gym Wear
+                <span class="asymmetric">Performance First</span>
+            </h2>
+            <span class="section-count">20 items</span>
+        </div>
+        <div class="product-grid">
+            <div class="product-card" onclick="addToCart('Compression Pro Set', 4499)">
+                <div class="product-image">[Product Image]</div>
+                <div class="product-info">
+                    <h3 class="product-name">Compression Pro Set</h3>
+                    <p class="product-price">₹4,499</p>
+                    <span class="product-tag">Tech Fabric</span>
+                </div>
+            </div>
+            <div class="product-card" onclick="addToCart('Flex Tank Top', 1499)">
+                <div class="product-image">[Product Image]</div>
+                <div class="product-info">
+                    <h3 class="product-name">Flex Tank Top</h3>
+                    <p class="product-price">₹1,499</p>
+                    <span class="product-tag">Essential</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="collection-section" id="accessories">
+        <div class="section-header">
+            <h2 class="section-title">
+                Accessories
+                <span class="asymmetric">Complete The Look</span>
+            </h2>
+            <span class="section-count">32 items</span>
+        </div>
+        <div class="product-grid">
+            <div class="product-card" onclick="addToCart('Gold Plated Chain', 2999)">
+                <div class="product-image">[Product Image]</div>
+                <div class="product-info">
+                    <h3 class="product-name">Gold Plated Chain</h3>
+                    <p class="product-price">₹2,999</p>
+                    <span class="product-tag">Jewelry</span>
+                </div>
+            </div>
+            <div class="product-card" onclick="addToCart('Leather Crossbody', 3999)">
+                <div class="product-image">[Product Image]</div>
+                <div class="product-info">
+                    <h3 class="product-name">Leather Crossbody</h3>
+                    <p class="product-price">₹3,999</p>
+                    <span class="product-tag">Bags</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cart Sidebar -->
+    <div class="overlay" onclick="toggleCart()"></div>
+    <div class="cart-sidebar" id="cart">
+        <div class="cart-header">
+            <h2 class="cart-title">Your Cart</h2>
+            <button class="close-cart" onclick="toggleCart()">×</button>
+        </div>
+        <div id="cart-items">
+            <!-- Cart items injected here -->
+        </div>
+        <div class="cart-total">
+            <div class="cart-row">
+                <span>Subtotal</span>
+                <span id="cart-subtotal">₹0</span>
+            </div>
+            <div class="cart-row">
+                <span>Shipping</span>
+                <span>Calculated at checkout</span>
+            </div>
+            <div class="cart-row total">
+                <span>Total</span>
+                <span id="cart-total">₹0</span>
+            </div>
+            <button class="checkout-btn">Secure Checkout</button>
+        </div>
+    </div>
+
+    <script>
+        let cart = [];
+        
+        function showCollection(collectionId) {
+            // Hide all sections
+            document.querySelectorAll('.collection-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(collectionId).classList.add('active');
+            
+            // Update active nav
+            document.querySelectorAll('.collection-nav a').forEach(link => {
+                link.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Smooth scroll to section instead of top
+            document.getElementById(collectionId).scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        function addToCart(name, price) {
+            cart.push({ name, price });
+            updateCart();
+            toggleCart();
+        }
+
+        function updateCart() {
+            const cartItems = document.getElementById('cart-items');
+            const cartCount = document.querySelector('.nav-links a:first-child');
+            const subtotalEl = document.getElementById('cart-subtotal');
+            const totalEl = document.getElementById('cart-total');
+            
+            cartItems.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <div class="cart-item-image"></div>
+                    <div class="cart-item-details">
+                        <h4>${item.name}</h4>
+                        <p>₹${item.price.toLocaleString()}</p>
+                    </div>
+                </div>
+            `).join('');
+            
+            const total = cart.reduce((sum, item) => sum + item.price, 0);
+            subtotalEl.textContent = `₹${total.toLocaleString()}`;
+            totalEl.textContent = `₹${total.toLocaleString()}`;
+            cartCount.textContent = `Cart (${cart.length})`;
+        }
+
+        function toggleCart() {
+            document.getElementById('cart').classList.toggle('open');
+            document.querySelector('.overlay').classList.toggle('active');
+        }
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+            });
+        });
+    </script>
+</body>
+</html>
