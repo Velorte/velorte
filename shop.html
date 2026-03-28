@@ -40,19 +40,18 @@
     <p>Curated luxury streetwear</p>
   </section>
 
-  <!-- WORKING FILTERS -->
+  <!-- WORKING FILTERS FOR 6 CATEGORIES -->
   <div class="shop-filters">
     <button class="filter-btn active" data-filter="all">All</button>
-    <button class="filter-btn" data-filter="hoodies">Hoodies</button>
-    <button class="filter-btn" data-filter="tees">Tees</button>
-    <button class="filter-btn" data-filter="jackets">Jackets</button>
-    <button class="filter-btn" data-filter="bottoms">Bottoms</button>
+    <button class="filter-btn" data-filter="latest">Latest Drop</button>
+    <button class="filter-btn" data-filter="new">New Collections</button>
+    <button class="filter-btn" data-filter="streetwear">Streetwear</button>
+    <button class="filter-btn" data-filter="oldmoney">Old Money</button>
+    <button class="filter-btn" data-filter="gym">Gym Wear</button>
     <button class="filter-btn" data-filter="accessories">Accessories</button>
   </div>
 
-  <div class="shop-grid" id="shop-products">
-    <!-- Products loaded by JavaScript -->
-  </div>
+  <div class="shop-grid" id="shop-products"></div>
 
   <div class="no-results" id="no-results" style="display: none;">
     <p>No products found in this category.</p>
@@ -85,29 +84,32 @@
 
   <script src="script.js"></script>
   <script>
-    // Shop page filtering
+    // All 12 products with collection tags
+    const shopInventory = [
+      { id: 1, name: "Signature Hoodie", price: "$149.00", collections: ["latest", "streetwear"], image: "https://via.placeholder.com/300x400/1a1a1a/ffffff?text=Signature+Hoodie" },
+      { id: 2, name: "Street Essential Tee", price: "$89.00", collections: ["streetwear"], image: "https://via.placeholder.com/300x400/2d2d2d/ffffff?text=Street+Essential+Tee" },
+      { id: 3, name: "Luxury Varsity Jacket", price: "$299.00", collections: ["latest", "oldmoney"], image: "https://via.placeholder.com/300x400/1a1a1a/ffffff?text=Luxury+Varsity+Jacket" },
+      { id: 4, name: "Old Money Trousers", price: "$179.00", collections: ["oldmoney"], image: "https://via.placeholder.com/300x400/2d2d2d/ffffff?text=Old+Money+Trousers" },
+      { id: 5, name: "Velorte Cap", price: "$59.00", collections: ["accessories"], image: "https://via.placeholder.com/300x400/1a1a1a/ffffff?text=Velorte+Cap" },
+      { id: 6, name: "Essential Sweatpants", price: "$129.00", collections: ["gym", "streetwear"], image: "https://via.placeholder.com/300x400/2d2d2d/ffffff?text=Essential+Sweatpants" },
+      { id: 7, name: "Premium Beanie", price: "$49.00", collections: ["accessories", "latest"], image: "https://via.placeholder.com/300x400/1a1a1a/ffffff?text=Premium+Beanie" },
+      { id: 8, name: "Oversized Tee", price: "$79.00", collections: ["streetwear", "new"], image: "https://via.placeholder.com/300x400/2d2d2d/ffffff?text=Oversized+Tee" },
+      { id: 9, name: "Performance Tank", price: "$69.00", collections: ["gym", "latest"], image: "https://via.placeholder.com/300x400/1a1a1a/ffffff?text=Performance+Tank" },
+      { id: 10, name: "Wool Overcoat", price: "$399.00", collections: ["oldmoney", "new"], image: "https://via.placeholder.com/300x400/2d2d2d/ffffff?text=Wool+Overcoat" },
+      { id: 11, name: "Leather Belt", price: "$89.00", collections: ["accessories", "oldmoney"], image: "https://via.placeholder.com/300x400/1a1a1a/ffffff?text=Leather+Belt" },
+      { id: 12, name: "Compression Leggings", price: "$99.00", collections: ["gym"], image: "https://via.placeholder.com/300x400/2d2d2d/ffffff?text=Compression+Leggings" }
+    ];
+
     const shopProducts = document.getElementById('shop-products');
     const filterBtns = document.querySelectorAll('.filter-btn');
     const noResults = document.getElementById('no-results');
-    
-    // All 8 products with categories
-    const allProducts = [
-      { id: 1, name: "Signature Hoodie", price: "$149.00", category: "hoodies", image: "https://via.placeholder.com/300x400/1a1a1a/ffffff?text=Signature+Hoodie" },
-      { id: 2, name: "Street Essential Tee", price: "$89.00", category: "tees", image: "https://via.placeholder.com/300x400/2d2d2d/ffffff?text=Street+Essential+Tee" },
-      { id: 3, name: "Luxury Varsity Jacket", price: "$299.00", category: "jackets", image: "https://via.placeholder.com/300x400/1a1a1a/ffffff?text=Luxury+Varsity+Jacket" },
-      { id: 4, name: "Old Money Trousers", price: "$179.00", category: "bottoms", image: "https://via.placeholder.com/300x400/2d2d2d/ffffff?text=Old+Money+Trousers" },
-      { id: 5, name: "Velorte Cap", price: "$59.00", category: "accessories", image: "https://via.placeholder.com/300x400/1a1a1a/ffffff?text=Velorte+Cap" },
-      { id: 6, name: "Essential Sweatpants", price: "$129.00", category: "bottoms", image: "https://via.placeholder.com/300x400/2d2d2d/ffffff?text=Essential+Sweatpants" },
-      { id: 7, name: "Premium Beanie", price: "$49.00", category: "accessories", image: "https://via.placeholder.com/300x400/1a1a1a/ffffff?text=Premium+Beanie" },
-      { id: 8, name: "Oversized Tee", price: "$79.00", category: "tees", image: "https://via.placeholder.com/300x400/2d2d2d/ffffff?text=Oversized+Tee" }
-    ];
-    
+
     function displayProducts(filter = 'all') {
       shopProducts.innerHTML = '';
       
       const filtered = filter === 'all' 
-        ? allProducts 
-        : allProducts.filter(p => p.category === filter);
+        ? shopInventory 
+        : shopInventory.filter(p => p.collections.includes(filter));
       
       if (filtered.length === 0) {
         noResults.style.display = 'block';
@@ -115,7 +117,7 @@
         noResults.style.display = 'none';
         filtered.forEach(product => {
           shopProducts.innerHTML += `
-            <div class="product-card" data-category="${product.category}">
+            <div class="product-card">
               <a href="product-detail.html?id=${product.id}" class="product-link">
                 <img src="${product.image}" alt="${product.name}">
                 <h3>${product.name}</h3>
@@ -126,7 +128,7 @@
         });
       }
     }
-    
+
     // Filter button clicks
     filterBtns.forEach(btn => {
       btn.addEventListener('click', () => {
@@ -135,7 +137,7 @@
         displayProducts(btn.dataset.filter);
       });
     });
-    
+
     // Check URL for category parameter
     const urlParams = new URLSearchParams(window.location.search);
     const categoryParam = urlParams.get('category');
